@@ -1,5 +1,6 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.AirlineCompany;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.AbstractPassengerPlane;
 import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.FlightProcessing;
 
@@ -13,12 +14,16 @@ public class FlightDeparture implements FlightProcessing {
     private String boardingGate;
     private int distance;
     private AbstractPassengerPlane plane;
+    private AirlineCompany airlineCompany;
 
-    public FlightDeparture(String destination, int distance, AbstractPassengerPlane plane){
+
+
+    public FlightDeparture(String destination, int distance, AbstractPassengerPlane plane, AirlineCompany airlineCompany){
 
         this.destination = destination;
         this.distance = distance;
         this.plane = plane;
+        this.airlineCompany = airlineCompany;
 
     }
 

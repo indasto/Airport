@@ -12,6 +12,7 @@ public class Airport {
     private String address;
     private double latitude;
     private double longitude;
+    private List<AirlineCompany> airlineCompanies;
 
     public Airport(Registry reg, List<Security> sec, int code, String name, String address, double latitude, double longitude) {
         this.registry = reg;
@@ -21,6 +22,28 @@ public class Airport {
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
+        airlineCompanies = new ArrayList<>();
+    }
+
+    public void addAirlineCompany(AirlineCompany company){
+        airlineCompanies.add(company);
+    }
+
+    public void removeAirlineCompany(int index){
+        airlineCompanies.remove(index);
+    }
+
+    public AirlineCompany getAirlineCompany(String name){
+        AirlineCompany company = null;
+
+        for (int i = 0; i < airlineCompanies.size(); i++) {
+            if (airlineCompanies.get(i).getCompanyName().equals(name)){
+                company = airlineCompanies.get(i);
+                break;
+            }
+        }
+
+        return company;
     }
 
     public Registry getRegistry() {

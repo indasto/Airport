@@ -2,14 +2,14 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes;
 
 import java.util.*;
 
-public class Airline {
+public class AirlineCompany {
 
     private List<Airport> airports;
     private String companyName;
     private String entityAddress;
     private List<String> comments;
 
-    public Airline(String name, String entityAddress, ArrayList<String> comments) {
+    public AirlineCompany(String name, String entityAddress, ArrayList<String> comments) {
 
         this.companyName = name;
         this.comments = comments;
@@ -36,6 +36,38 @@ public class Airline {
         }
     }
 
+    public List<Airport> getAirports() {
+        return airports;
+    }
+
+    public List<String> getComments() {
+        return comments;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getEntityAddress() {
+        return entityAddress;
+    }
+
+    public void setAirports(List<Airport> airports) {
+        this.airports = airports;
+    }
+
+    public void setComments(List<String> comments) {
+        this.comments = comments;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setEntityAddress(String entityAddress) {
+        this.entityAddress = entityAddress;
+    }
+
     @Override
     public String toString() {
         return  "Company name: " + companyName + ", Entity address: " +
@@ -46,11 +78,11 @@ public class Airline {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Airline airline = (Airline) o;
-        return Objects.equals(airports, airline.airports) &&
-                Objects.equals(companyName, airline.companyName) &&
-                Objects.equals(entityAddress, airline.entityAddress) &&
-                Objects.equals(comments, airline.comments);
+        AirlineCompany airlineCompany = (AirlineCompany) o;
+        return Objects.equals(airports, airlineCompany.airports) &&
+                Objects.equals(companyName, airlineCompany.companyName) &&
+                Objects.equals(entityAddress, airlineCompany.entityAddress) &&
+                Objects.equals(comments, airlineCompany.comments);
     }
 
     @Override

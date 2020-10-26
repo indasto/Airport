@@ -1,5 +1,6 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.AirlineCompany;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans.client.Ticket;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.AbstractPassengerPlane;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.PlaneManager;
@@ -14,19 +15,19 @@ public class FlightSystemManager {
     private List<FlightDeparture> flightDepartures;
     private Route routes;
 
-    public String getTicketId(Ticket ticket){
+    public String getTicketId(Ticket ticket) {
 
         FlightDeparture fd = ticket.getFlight();
 
         for (int i = 0; i < flightDepartures.size(); i++) {
-            if (flightDepartures.get(i).equals(fd)){
-                ClassLevel classLvl= ticket.getCl();
-                if(classLvl == ClassLevel.FIRST){
-                    return "First class "+ flightDepartures.get(i).getPlane().getName() + flightDepartures.get(i).getPlane().bookFirstClassSit();
-                } else if (classLvl == ClassLevel.BUSINESS){
-                    return "Business class "+ flightDepartures.get(i).getPlane().getName() + flightDepartures.get(i).getPlane().bookFirstClassSit();
-                } else if (classLvl == ClassLevel.ECONOM){
-                    return "Econom class "+ flightDepartures.get(i).getPlane().getName() + flightDepartures.get(i).getPlane().bookFirstClassSit();
+            if (flightDepartures.get(i).equals(fd)) {
+                ClassLevel classLvl = ticket.getCl();
+                if (classLvl == ClassLevel.FIRST) {
+                    return "First class " + flightDepartures.get(i).getPlane().getName() + flightDepartures.get(i).getPlane().bookFirstClassSit();
+                } else if (classLvl == ClassLevel.BUSINESS) {
+                    return "Business class " + flightDepartures.get(i).getPlane().getName() + flightDepartures.get(i).getPlane().bookFirstClassSit();
+                } else if (classLvl == ClassLevel.ECONOM) {
+                    return "Econom class " + flightDepartures.get(i).getPlane().getName() + flightDepartures.get(i).getPlane().bookFirstClassSit();
                 }
             }
         }
@@ -36,27 +37,27 @@ public class FlightSystemManager {
 
     public FlightSystemManager(PlaneManager pm, Route route) {
         this.pm = pm;
-        this.routes =route;
+        this.routes = route;
     }
 
-    public void addArriveFlight(FlightArrive fa)  {
+    public void addArriveFlight(FlightArrive fa) {
         flightArrives.add(fa);
     }
 
-    public void addDepartureFlight(FlightDeparture fd)  {
+    public void addDepartureFlight(FlightDeparture fd) {
         flightDepartures.add(fd);
     }
 
-    public void addDepartureFlight(String routName){
+    public void addDepartureFlight(String routName, AirlineCompany airlineCompany) {
         HashMap<String, Integer> route = routes.getRoute(routName);
-        for(Map.Entry<String,Integer> entry : route.entrySet()){
+        for (Map.Entry<String, Integer> entry : route.entrySet()) {
 
-            Class planeClass = routes.findPassengerPlaneClass(routName,entry.getKey());
-            AbstractPassengerPlane plane=null;
-            if(pm.isPlaneAvailable(planeClass)) {
+            Class planeClass = routes.findPassengerPlaneClass(routName, entry.getKey());
+            AbstractPassengerPlane plane = null;
+            if (pm.isPlaneAvailable(planeClass)) {
                 plane = pm.getPassengerPlane(planeClass);
             }
-            flightDepartures.add(new FlightDeparture(entry.getKey(),entry.getValue(),plane));
+            flightDepartures.add(new FlightDeparture(entry.getKey(), entry.getValue(), plane, airlineCompany));
         }
     }
 
@@ -89,7 +90,7 @@ public class FlightSystemManager {
     public String toString() {
         return
                 "Plane Manager: " + pm + ", Flight Arrives=" + flightArrives +
-                ", FlightDepartures=" + flightDepartures;
+                        ", FlightDepartures=" + flightDepartures;
     }
 
     @Override
@@ -103,13 +104,13 @@ public class FlightSystemManager {
         }
 
         FlightSystemManager that = (FlightSystemManager) ref;
-        return  Objects.equals(pm, that.pm) &&
+        return Objects.equals(pm, that.pm) &&
                 Objects.equals(flightArrives, that.flightArrives) &&
                 Objects.equals(flightDepartures, that.flightDepartures);
     }
 
     @Override
     public int hashCode() {
-        return flightDepartures.hashCode()+ flightArrives.hashCode() + pm.hashCode();
+        return flightDepartures.hashCode() + flightArrives.hashCode() + pm.hashCode();
     }
 }

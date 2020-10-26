@@ -1,35 +1,18 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans.client.Ticket;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.AbstractPassengerPlane;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.PlaneManager;
 import com.java.automation.lab.fall.grinecivh.core22.domain.enums.ClassLevel;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.time.OffsetDateTime;
+import java.util.*;
 
 public class FlightSystemManager {
     private PlaneManager pm;
     private List<FlightArrive> flightArrives;
     private List<FlightDeparture> flightDepartures;
-
-
-    public FlightSystemManager(PlaneManager pm) {
-        this.pm = pm;
-    }
-
-    public void addArriveFlight(FlightArrive fa)  {
-        flightArrives.add(fa);
-    }
-
-    public void addDepartureFlight(FlightDeparture fd)  {
-        if (pm.isPlaneAvailable(fd.getDistance())){
-            fd.setPlane(pm.getPlane(fd.getDistance()));
-            flightDepartures.add(fd);
-        } else {
-            System.out.println("Can't set the flight");
-        }
-    }
+    private Route routes;
 
     public String getTicketId(Ticket ticket){
 
@@ -51,6 +34,31 @@ public class FlightSystemManager {
         return null;
     }
 
+    public FlightSystemManager(PlaneManager pm, Route route) {
+        this.pm = pm;
+        this.routes =route;
+    }
+
+    public void addArriveFlight(FlightArrive fa)  {
+        flightArrives.add(fa);
+    }
+
+    public void addDepartureFlight(FlightDeparture fd)  {
+        flightDepartures.add(fd);
+    }
+
+    public void addDepartureFlight(String routName){
+        HashMap<String, Integer> route = routes.getRoute(routName);
+        for(Map.Entry<String,Integer> entry : route.entrySet()){
+
+            Class planeClass = routes.findPassengerPlaneClass(routName,entry.getKey());
+            AbstractPassengerPlane plane=null;
+            if(pm.isPlaneAvailable(planeClass)) {
+                plane = pm.getPassengerPlane(planeClass);
+            }
+            flightDepartures.add(new FlightDeparture(entry.getKey(),entry.getValue(),plane));
+        }
+    }
 
     public List<FlightArrive> getFlightArrives() {
         return flightArrives;

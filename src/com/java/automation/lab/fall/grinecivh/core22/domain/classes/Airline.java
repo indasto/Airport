@@ -4,22 +4,33 @@ import java.util.*;
 
 public class Airline {
 
-    private HashMap<String,Integer> codeForCity;   // Where String city, Integer code of the airport
+    private List<Airport> airports;
     private String companyName;
     private String entityAddress;
     private List<String> comments;
 
-    public Airline(String name, String entityAddress, ArrayList<String> comments, HashMap<String,Integer> codes){
+    public Airline(String name, String entityAddress, ArrayList<String> comments) {
 
         this.companyName = name;
         this.comments = comments;
         this.entityAddress = entityAddress;
-        this.codeForCity = codes;
+        airports = new ArrayList<>();
     }
 
+    public void addAirport(Airport airport){
+        airports.add(airport);
+    }
 
+    public void removeAirport(int code){
+        for (int i = 0; i < airports.size(); i++) {
+            if(airports.get(i).getCode() == code){
+                airports.remove(i);
+                break;
+            }
+        }
+    }
 
-    public void addComment(String ... com){
+    public void addComment(String... com) {
         for (int i = 0; i < com.length; i++) {
             comments.add(com[i]);
         }
@@ -27,23 +38,16 @@ public class Airline {
 
     @Override
     public String toString() {
-        return "Cities and their codes " + codeForCity + ", Company name: " + companyName + ", Entity address: " +
-                entityAddress + ", Comments: " + comments;
+        return  "Company name: " + companyName + ", Entity address: " +
+                entityAddress + ", Comments: " + comments + "Airports: " + airports;
     }
 
     @Override
-    public boolean equals(Object ref) {
-        if (this == ref) {
-            return true;
-        }
-
-        if (ref == null || getClass() != ref.getClass()) {
-            return false;
-        }
-
-        Airline airline = (Airline) ref;
-
-        return Objects.equals(codeForCity, airline.codeForCity) &&
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airline airline = (Airline) o;
+        return Objects.equals(airports, airline.airports) &&
                 Objects.equals(companyName, airline.companyName) &&
                 Objects.equals(entityAddress, airline.entityAddress) &&
                 Objects.equals(comments, airline.comments);

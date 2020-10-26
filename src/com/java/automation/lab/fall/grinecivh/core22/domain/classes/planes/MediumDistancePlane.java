@@ -8,15 +8,10 @@ public class MediumDistancePlane extends AbstractPassengerPlane {
                                int totalFirstClassSits, int totalBusinessClassSits, int totalEconomClassSits) throws RuntimeException {
 
         super(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm, name, totalFirstClassSits,
-                totalBusinessClassSits, totalEconomClassSits);
+                totalBusinessClassSits, totalEconomClassSits, maxFlightDistanceKm);
 
-        if (maxFlightDistanceKm >2500 && maxFlightDistanceKm <= 5000) {
-            super.maxFlightDistanceKm = maxFlightDistanceKm;
-        } else {
-            System.out.println("It is not a medium distance plane");
-            throw new RuntimeException();
-        }
     }
+
 
     @Override
     public String toString() {
@@ -31,6 +26,12 @@ public class MediumDistancePlane extends AbstractPassengerPlane {
     @Override
     public int hashCode() {
         return super.hashCode();
+    }
+
+    @Override
+    public boolean fly(double distanceKm) {
+        System.out.println("Medium distance plane " + this.getName() +" fly");
+        return super.fly(distanceKm);
     }
 }
 

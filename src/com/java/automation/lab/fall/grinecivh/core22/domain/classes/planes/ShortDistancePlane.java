@@ -8,14 +8,7 @@ public class ShortDistancePlane extends AbstractPassengerPlane {
                               int totalFirstClassSits, int totalBusinessClassSits, int totalEconomClassSits) throws RuntimeException {
 
         super(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm, name, totalFirstClassSits,
-                totalBusinessClassSits, totalEconomClassSits);
-
-        if (maxFlightDistanceKm >50 && maxFlightDistanceKm <= 2500) {
-            super.maxFlightDistanceKm = maxFlightDistanceKm;
-        } else {
-            System.out.println("It is not a short distance plane");
-            throw new RuntimeException();
-        }
+                totalBusinessClassSits, totalEconomClassSits, maxFlightDistanceKm);
     }
 
     @Override
@@ -31,5 +24,11 @@ public class ShortDistancePlane extends AbstractPassengerPlane {
     @Override
     public int hashCode() {
         return super.hashCode();
+    }
+
+    @Override
+    public boolean fly(double distanceKm) {
+        System.out.println("Short distance plane " + this.getName() +" fly");
+        return super.fly(distanceKm);
     }
 }

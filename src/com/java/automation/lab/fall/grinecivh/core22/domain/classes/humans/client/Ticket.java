@@ -11,12 +11,17 @@ public class Ticket {
     private String flightId;
     private FlightDeparture flight;
 
-    public Ticket(AccessLevel accessLevel, ClassLevel classLevel, String flightId, FlightDeparture flight){
+    private Ticket(AccessLevel accessLevel, ClassLevel classLevel, String flightId, FlightDeparture flight){
 
         this.al = accessLevel;
         this.cl = classLevel;
         this.flightId = flightId;
         this.flight = flight;
+    }
+
+    public static Ticket createTicket(AccessLevel accessLevel, ClassLevel classLevel, String flightId, FlightDeparture flight){
+
+        return new Ticket(accessLevel,classLevel,flightId,flight);
     }
 
     public AccessLevel getAl() {

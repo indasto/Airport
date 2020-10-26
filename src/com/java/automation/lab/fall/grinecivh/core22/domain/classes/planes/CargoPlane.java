@@ -46,4 +46,10 @@ public class CargoPlane extends AbstractPlane {
     public int hashCode() {
         return Objects.hash(super.hashCode(), capacityTons);
     }
+
+    @Override
+    public boolean fly(double distanceKm) {
+        System.out.println("Cargo " + this.getName() +" fly");
+        return super.fly(distanceKm);
+    }
 }

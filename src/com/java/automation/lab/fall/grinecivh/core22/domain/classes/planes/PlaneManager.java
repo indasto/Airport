@@ -1,5 +1,7 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control.Route;
+
 import java.util.*;
 
 public class PlaneManager {
@@ -9,6 +11,7 @@ public class PlaneManager {
     private List<MediumDistancePlane> mediumDistancePlanes;
     private List<LongDistancePlane> longDistancePlanes;
     private List<PrivatePlane> privatePlanes;
+    private Route route;
 
     public PlaneManager(CargoPlane[] cp, ShortDistancePlane[] up, MediumDistancePlane[] bp, LongDistancePlane[] ep) throws RuntimeException {
 
@@ -22,29 +25,39 @@ public class PlaneManager {
         Collections.addAll(longDistancePlanes, ep);
     }
 
-    public boolean isPlaneAvailable(int distanceKm) {
+    public PlaneManager(){}
+
+    public boolean isPlaneAvailable(Class <?> cl) {
         boolean available = false;
 
-        if (distanceKm > 50 && distanceKm <= 2500) {
+        if (cl.equals(ShortDistancePlane.class)) {
             available = isItAvailable(this.shortDistancePlanes);
-        } else if (distanceKm <=5000){
+        } else if (cl.equals(MediumDistancePlane.class)){
             available = isItAvailable(this.mediumDistancePlanes);
-        } else if (distanceKm > 50){
+        } else if (cl.equals(LongDistancePlane.class)){
             available = isItAvailable(this.longDistancePlanes);
+        } else if (cl.equals(PrivatePlane.class)){
+            available = isItAvailable(this.privatePlanes);
+        } else if (cl.equals(CargoPlane.class)){
+            available = isItAvailable(this.cargoPlanes);
         }
 
         return available;
     }
 
-    public AbstractPassengerPlane getPlane(int distanceKm){
-        if (distanceKm > 50 && distanceKm <= 2500) {
-
-        } else if (distanceKm <=5000){
-
-        } else if (distanceKm > 50){
+    public void addPlane(AbstractPlane plane){
+        Class<?> cl = plane.getClass();
+        if (cl.equals(ShortDistancePlane.class)) {
+            shortDistancePlanes.add((ShortDistancePlane)plane);
+        } else if (cl.equals(MediumDistancePlane.class)){
+            mediumDistancePlanes.add((MediumDistancePlane)plane);
+        } else if (cl.equals(LongDistancePlane.class)){
+            longDistancePlanes.add((LongDistancePlane) plane);
+        } else if (cl.equals(PrivatePlane.class)){
+            privatePlanes.add((PrivatePlane)plane);
+        } else if (cl.equals(CargoPlane.class)){
+            cargoPlanes.add((CargoPlane)plane);
         }
-
-        return null;
     }
 
     public AbstractPassengerPlane findPlane(List<? extends AbstractPassengerPlane> plane){
@@ -58,14 +71,24 @@ public class PlaneManager {
         return null;
     }
 
-    public boolean isPrivatePlaneAvailable(){
+    public AbstractPassengerPlane getPassengerPlane(Class <?> cl){
+        AbstractPassengerPlane plane = null;
 
-        boolean available = isItAvailable(this.privatePlanes);
-        return  available;
+        if (cl.equals(ShortDistancePlane.class)) {
+            plane = findPlane(this.shortDistancePlanes);
+        } else if (cl.equals(MediumDistancePlane.class)){
+            plane = findPlane(this.mediumDistancePlanes);
+        } else if (cl.equals(LongDistancePlane.class)){
+            plane = findPlane(this.longDistancePlanes);
+        } else if (cl.equals(PrivatePlane.class)){
+            plane = findPlane(this.privatePlanes);
+        }
+
+        return plane;
     }
 
 
-    private boolean isItAvailable(List<? extends AbstractPassengerPlane> plane) {
+    private boolean isItAvailable(List<? extends AbstractPlane> plane) {
 
         for (int i = 0; i < plane.size(); i++) {
             if (!plane.get(i).isInFlight()) {

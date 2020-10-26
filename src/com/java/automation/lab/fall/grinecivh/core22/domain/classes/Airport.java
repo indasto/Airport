@@ -8,9 +8,19 @@ public class Airport {
     private Registry registry;
     private List<Security> securities;
     private int code;
+    private String name;
+    private String address;
+    private double latitude;
+    private double longitude;
 
-    public static void main(String[] args) {
-        //creating all the stuff
+    public Airport(Registry reg, List<Security> sec, int code, String name, String address, double latitude, double longitude) {
+        this.registry = reg;
+        this.securities = sec;
+        this.code = code;
+        this.name = name;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Registry getRegistry() {
@@ -25,36 +35,71 @@ public class Airport {
         this.registry = registry;
     }
 
-    public void setSecurities(ArrayList<Security> securities) {
+    public void setSecurities(List<Security> securities) {
         this.securities = securities;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 
     @Override
     public String toString() {
-        return  "Registry: " + registry + ", securities: " + securities +
+        return "Airport location: " + address + "Name: " + name + "Registry: " + registry + ", securities: " + securities +
                 ", Airport code" + code;
     }
 
     @Override
-    public boolean equals(Object ref) {
-        if (this == ref) {
-            return true;
-        }
-
-        if (ref == null || getClass() != ref.getClass()) {
-            return false;
-        }
-
-        Airport airport = (Airport) ref;
-
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airport airport = (Airport) o;
         return code == airport.code &&
                 Objects.equals(registry, airport.registry) &&
-                Objects.equals(securities, airport.securities);
+                Objects.equals(securities, airport.securities) &&
+                Objects.equals(name, airport.name) &&
+                Objects.equals(address, airport.address);
     }
 
     @Override
     public int hashCode() {
-        return registry.hashCode()+securities.hashCode();
+        return registry.hashCode() + securities.hashCode();
     }
 }

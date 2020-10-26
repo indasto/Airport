@@ -14,11 +14,9 @@ public class FlightDeparture implements FlightProcessing {
     private int distance;
     private AbstractPassengerPlane plane;
 
-    public FlightDeparture(String destination, OffsetDateTime dateOfDeparture, String boardingGate, int distance, AbstractPassengerPlane plane){
+    public FlightDeparture(String destination, int distance, AbstractPassengerPlane plane){
 
         this.destination = destination;
-        this.dateOfDeparture = dateOfDeparture;
-        this.boardingGate = boardingGate;
         this.distance = distance;
         this.plane = plane;
 

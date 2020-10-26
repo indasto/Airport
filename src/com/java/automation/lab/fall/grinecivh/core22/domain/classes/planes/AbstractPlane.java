@@ -1,11 +1,13 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans.Pilot;
+import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Fly;
+import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Refuel;
 
 import java.util.*;
 
 
-public abstract class AbstractPlane {
+public abstract class AbstractPlane implements Fly, Refuel {
 
     private double currentFuel;
     private double maxFuel;

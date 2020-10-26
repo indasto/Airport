@@ -8,9 +8,13 @@ public class PrivatePlane extends AbstractPassengerPlane {
                               int totalFirstClassSits) {
 
         super(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm, name, totalFirstClassSits,
-                0, 0);
+                0, 0, maxFlightDistanceKm);
+    }
 
-        super.maxFlightDistanceKm = maxFlightDistanceKm;
+    @Override
+    public boolean fly(double distanceKm) {
+        System.out.println("Private plane " + this.getName() +" fly");
+        return super.fly(distanceKm);
     }
 
     @Override

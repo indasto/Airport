@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class AbstractPassengerPlane extends AbstractPlane implements Fly, Refuel {
+public abstract class AbstractPassengerPlane extends AbstractPlane {
 
     private List<Steward> stewards;
     protected int maxFlightDistanceKm;
@@ -22,13 +22,14 @@ public abstract class AbstractPassengerPlane extends AbstractPlane implements Fl
 
     public AbstractPassengerPlane(double currentFuel, double maxFuel, double priceOfAPlane, int yearOfCommissioning,
                                   double fuelConsumptionPerKm, String name, int totalFirstClassSits,
-                                  int totalBusinessClassSits, int totalEconomClassSits) {
+                                  int totalBusinessClassSits, int totalEconomClassSits, int maxFlightDistanceKm) {
 
         super(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm, name);
 
         this.totalBusinessClassSits = totalBusinessClassSits;
         this.totalEconomClassSits = totalEconomClassSits;
         this.totalFirstClassSits = totalFirstClassSits;
+        this.maxFlightDistanceKm = maxFlightDistanceKm;
     }
 
     public void addSteward(Steward steward) {

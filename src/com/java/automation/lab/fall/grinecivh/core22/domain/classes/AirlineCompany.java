@@ -6,26 +6,15 @@ public class AirlineCompany {
 
     private String companyName;
     private String entityAddress;
-    private List<String> comments;
+    private Dictionary dictionary;
 
-    public AirlineCompany(String name, String entityAddress, ArrayList<String> comments) {
+    public AirlineCompany(String name, String entityAddress) {
 
         this.companyName = name;
-        this.comments = comments;
         this.entityAddress = entityAddress;
+        dictionary = new Dictionary();
     }
 
-
-    public void addComment(String... com) {
-        for (int i = 0; i < com.length; i++) {
-            comments.add(com[i]);
-        }
-    }
-
-
-    public List<String> getComments() {
-        return comments;
-    }
 
     public String getCompanyName() {
         return companyName;
@@ -33,11 +22,6 @@ public class AirlineCompany {
 
     public String getEntityAddress() {
         return entityAddress;
-    }
-
-
-    public void setComments(List<String> comments) {
-        this.comments = comments;
     }
 
     public void setCompanyName(String companyName) {
@@ -48,10 +32,18 @@ public class AirlineCompany {
         this.entityAddress = entityAddress;
     }
 
+    public Dictionary getDictionary() {
+        return dictionary;
+    }
+
+    public void setDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
+    }
+
     @Override
     public String toString() {
-        return  "Company name: " + companyName + ", Entity address: " +
-                entityAddress + ", Comments: " + comments;
+        return "Company name: " + companyName + ", Entity address: " +
+                entityAddress;
     }
 
     @Override
@@ -61,11 +53,11 @@ public class AirlineCompany {
         AirlineCompany airlineCompany = (AirlineCompany) o;
         return Objects.equals(companyName, airlineCompany.companyName) &&
                 Objects.equals(entityAddress, airlineCompany.entityAddress) &&
-                Objects.equals(comments, airlineCompany.comments);
+                Objects.equals(dictionary, airlineCompany.dictionary);
     }
 
     @Override
     public int hashCode() {
-        return companyName.hashCode() + comments.hashCode();
+        return companyName.hashCode() + dictionary.hashCode();
     }
 }

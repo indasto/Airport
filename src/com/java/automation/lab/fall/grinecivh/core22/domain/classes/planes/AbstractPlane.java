@@ -1,5 +1,7 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.LackOfFuelException;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.MaxFuelException;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans.Pilot;
 import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Fly;
 import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Refuel;
@@ -18,17 +20,18 @@ public abstract class AbstractPlane implements Fly, Refuel {
     private List<Pilot> pilots;
     private boolean inFlight = false;
 
-    public AbstractPlane(double currentFuel, double maxFuel, double priceOfAPlane, int yearOfCommissioning, double fuelConsumptionPerKm, String name) throws RuntimeException {
+    public AbstractPlane(double currentFuel, double maxFuel, double priceOfAPlane, int yearOfCommissioning,
+                         double fuelConsumptionPerKm, String name) throws MaxFuelException {
 
         int currentYear = getCurrentYear();
 
-        if (currentFuel < 0 || maxFuel <= 0 || priceOfAPlane < 0 || yearOfCommissioning < 1903 ||
-                yearOfCommissioning > currentYear || fuelConsumptionPerKm <= 0 || name == null) {
-            throw new RuntimeException();
+        if (maxFuel <=1000){
+            throw new MaxFuelException();
+        } else {
+            this.maxFuel = maxFuel;
         }
 
         this.currentFuel = currentFuel;
-        this.maxFuel = maxFuel;
         this.priceOfAPlane = priceOfAPlane;
         this.yearOfCommissioning = yearOfCommissioning;
         this.fuelConsumptionPerKm = fuelConsumptionPerKm;
@@ -75,22 +78,19 @@ public abstract class AbstractPlane implements Fly, Refuel {
         }
     }
 
-    public boolean fly(double distanceKm) {
-        boolean success = false;
+    public void fly(double distanceKm) throws LackOfFuelException {
 
         if (distanceKm <= 0) {
             System.out.println("Distance can't be 0 and less");
-            return success;
         }
 
-        if (distanceKm * fuelConsumptionPerKm > currentFuel) {
-            System.out.println("Don't enough fuel to fly");
+        if ((distanceKm * fuelConsumptionPerKm) > currentFuel) {
+            throw new LackOfFuelException();
         } else {
             currentFuel -= distanceKm * fuelConsumptionPerKm;
-            success = true;
+
         }
 
-        return success;
     }
 
     public double getCurrentFuel() {

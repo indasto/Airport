@@ -1,5 +1,7 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.WrongAgeException;
+
 import java.util.Objects;
 
 public abstract class AbstractHuman {
@@ -8,10 +10,10 @@ public abstract class AbstractHuman {
     private String lastName;
     private int age;
 
-    public AbstractHuman(String firstName, String lastName, int age) throws RuntimeException {
+    public AbstractHuman(String firstName, String lastName, int age) throws WrongAgeException {
 
-        if (firstName == null || lastName == null || age < 18) {
-            throw new RuntimeException();
+        if (age < 0 || age >130) {
+            throw new WrongAgeException();
         }
 
         this.age = age;

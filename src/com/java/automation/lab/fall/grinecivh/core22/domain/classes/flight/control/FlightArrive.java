@@ -15,7 +15,6 @@ public class FlightArrive implements FlightProcessing {
     private AbstractPlane plane;
 
     public FlightArrive(String comesFrom, OffsetDateTime date, String arrivalGate, int distance) {
-
         this.comesFrom = comesFrom;
         dateOfArrive = date;
         this.arrivalGate = arrivalGate;

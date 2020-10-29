@@ -1,11 +1,17 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans.client;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.LuggageWeightException;
+
 public abstract class Luggage {
 
     private double kg;
     private String name;
 
-    public Luggage(String thing, double kg)  {
+    public Luggage(String thing, double kg) throws LuggageWeightException {
+
+        if (kg<0){
+            throw new LuggageWeightException();
+        }
 
         this.kg = kg;
         this.name = thing;
@@ -24,8 +30,13 @@ public abstract class Luggage {
         return kg;
     }
 
-    public void setKg(double kg) {
+    public void setKg(double kg) throws LuggageWeightException {
+        if (kg<0){
+            throw new LuggageWeightException();
+        }
+
         this.kg = kg;
+
     }
 
 

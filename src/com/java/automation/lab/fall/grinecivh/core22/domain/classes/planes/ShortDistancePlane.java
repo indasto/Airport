@@ -1,6 +1,8 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes;
 
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.LackOfFuelException;
+
 public class ShortDistancePlane extends AbstractPassengerPlane {
 
     public ShortDistancePlane(double currentFuel, double maxFuel, double priceOfAPlane, int yearOfCommissioning,
@@ -27,8 +29,12 @@ public class ShortDistancePlane extends AbstractPassengerPlane {
     }
 
     @Override
-    public boolean fly(double distanceKm) {
-        System.out.println("Short distance plane " + this.getName() +" fly");
-        return super.fly(distanceKm);
+    public void fly(double distanceKm) {
+        try {
+            System.out.println("Short distance plane " + this.getName() +" fly");
+            super.fly(distanceKm);
+        } catch (LackOfFuelException ex){
+            ex.printStackTrace();
+        }
     }
 }

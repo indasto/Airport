@@ -1,5 +1,6 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.MaxDistanceException;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans.Steward;
 import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Fly;
 import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Refuel;
@@ -22,9 +23,13 @@ public abstract class AbstractPassengerPlane extends AbstractPlane {
 
     public AbstractPassengerPlane(double currentFuel, double maxFuel, double priceOfAPlane, int yearOfCommissioning,
                                   double fuelConsumptionPerKm, String name, int totalFirstClassSits,
-                                  int totalBusinessClassSits, int totalEconomClassSits, int maxFlightDistanceKm) {
+                                  int totalBusinessClassSits, int totalEconomClassSits, int maxFlightDistanceKm) throws MaxDistanceException {
 
         super(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm, name);
+
+        if (maxFlightDistanceKm<50){
+            throw new MaxDistanceException();
+        }
 
         this.totalBusinessClassSits = totalBusinessClassSits;
         this.totalEconomClassSits = totalEconomClassSits;

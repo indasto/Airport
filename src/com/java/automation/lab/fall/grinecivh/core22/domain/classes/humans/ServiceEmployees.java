@@ -2,8 +2,6 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.enums.Profession;
 
-import java.util.Objects;
-
 public class ServiceEmployees extends AbstractWorker {
 
     private Profession profession;

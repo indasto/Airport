@@ -25,7 +25,13 @@ public class PlaneManager {
         Collections.addAll(longDistancePlanes, ep);
     }
 
-    public PlaneManager(){}
+    public PlaneManager(){
+        cargoPlanes = new ArrayList<>();
+        shortDistancePlanes = new ArrayList<>();
+        mediumDistancePlanes = new ArrayList<>();
+        longDistancePlanes = new ArrayList<>();
+        privatePlanes = new ArrayList<>();
+    }
 
     public boolean isPlaneAvailable(Class <?> cl) {
         boolean available = false;

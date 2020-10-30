@@ -36,6 +36,7 @@ public abstract class AbstractPlane implements Fly, Refuel {
         this.yearOfCommissioning = yearOfCommissioning;
         this.fuelConsumptionPerKm = fuelConsumptionPerKm;
         this.name = name;
+        pilots = new ArrayList<>();
     }
 
     public void addPilot(Pilot pilot){

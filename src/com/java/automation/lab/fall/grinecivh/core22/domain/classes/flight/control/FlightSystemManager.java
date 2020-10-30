@@ -6,7 +6,6 @@ import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.Abstr
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.PlaneManager;
 import com.java.automation.lab.fall.grinecivh.core22.domain.enums.ClassLevel;
 
-import java.time.OffsetDateTime;
 import java.util.*;
 
 public class FlightSystemManager {
@@ -38,6 +37,8 @@ public class FlightSystemManager {
     public FlightSystemManager(PlaneManager pm, Route route) {
         this.pm = pm;
         this.routes = route;
+        flightArrives = new LinkedList<>();
+        flightDepartures = new LinkedList<>();
     }
 
     public void addArriveFlight(FlightArrive fa) {

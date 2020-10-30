@@ -17,13 +17,14 @@ public class Registry {
     private FlightSystemManager fm;
 
     public Registry(FlightSystemManager fm, ServiceEmployees... se) {
-
         this.fm = fm;
+        airportPersonals = new ArrayList<>();
+        clients = new LinkedList<>();
+
         for (int i = 0; i < se.length; i++) {
             airportPersonals.add(se[i]);
         }
     }
-
 
     public void addClient(Client cl)  {
 

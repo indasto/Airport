@@ -16,8 +16,6 @@ public class FlightDeparture implements FlightProcessing {
     private AbstractPassengerPlane plane;
     private AirlineCompany airlineCompany;
 
-
-
     public FlightDeparture(String destination, int distance, AbstractPassengerPlane plane, AirlineCompany airlineCompany){
 
         this.destination = destination;

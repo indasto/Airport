@@ -35,6 +35,7 @@ public abstract class AbstractPassengerPlane extends AbstractPlane {
         this.totalEconomClassSits = totalEconomClassSits;
         this.totalFirstClassSits = totalFirstClassSits;
         this.maxFlightDistanceKm = maxFlightDistanceKm;
+        stewards = new ArrayList<>();
     }
 
     public void addSteward(Steward steward) {

@@ -10,7 +10,7 @@ import java.util.*;
 public class Route {
     private static final double EARTH_RADIUS = 6371;
     private Airport mainAirport;
-    HashMap<String, HashMap<String, Integer>> routes = new HashMap<>();  // First String = name of the route, Integer = distance
+    private HashMap<String, HashMap<String, Integer>> routes = new HashMap<>();  // First String = name of the route, Integer = distance
 
     public Route(Airport mainAirport) {
         this.mainAirport = mainAirport;

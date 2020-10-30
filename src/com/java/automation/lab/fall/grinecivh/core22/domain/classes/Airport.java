@@ -14,15 +14,16 @@ public class Airport {
     private double longitude;
     private List<AirlineCompany> airlineCompanies;
 
-    public Airport(Registry reg, List<Security> sec, int code, String name, String address, double latitude, double longitude) {
+    public Airport(Registry reg, int code, String name, String address, double latitude, double longitude) {
         this.registry = reg;
-        this.securities = sec;
         this.code = code;
         this.name = name;
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
+
         airlineCompanies = new ArrayList<>();
+        securities = new ArrayList<>();
     }
 
     public void addAirlineCompany(AirlineCompany company){
@@ -58,7 +59,7 @@ public class Airport {
         this.registry = registry;
     }
 
-    public void setSecurities(List<Security> securities) {
+    public void setSecurities(ArrayList<Security> securities) {
         this.securities = securities;
     }
 

@@ -52,11 +52,11 @@ public class Registry {
         return clients;
     }
 
-    public void setAirportPersonals(ArrayList<ServiceEmployees> airportPersonals) {
+    public void setAirportPersonals(List<ServiceEmployees> airportPersonals) {
         this.airportPersonals = airportPersonals;
     }
 
-    public void setClients(LinkedList<Client> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 

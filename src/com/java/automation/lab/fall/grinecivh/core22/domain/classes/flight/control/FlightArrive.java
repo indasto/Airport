@@ -1,5 +1,7 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.AirlineCompany;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.AbstractPassengerPlane;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.AbstractPlane;
 import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.FlightProcessing;
 
@@ -12,7 +14,7 @@ public class FlightArrive implements FlightProcessing {
     private OffsetDateTime dateOfArrive;
     private String arrivalGate;
     private int distance;
-    private AbstractPlane plane;
+    private AbstractPassengerPlane plane;
 
     public FlightArrive(String comesFrom, OffsetDateTime date, String arrivalGate, int distance) {
         this.comesFrom = comesFrom;
@@ -71,7 +73,7 @@ public class FlightArrive implements FlightProcessing {
         return plane;
     }
 
-    public void setPlane(AbstractPlane plane) {
+    public void setPlane(AbstractPassengerPlane plane) {
         this.plane = plane;
     }
 

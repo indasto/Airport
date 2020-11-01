@@ -125,23 +125,23 @@ public class PlaneManager {
         return shortDistancePlanes;
     }
 
-    public void setCargoPlanes(ArrayList<CargoPlane> cargoPlanes) {
+    public void setCargoPlanes(List<CargoPlane> cargoPlanes) {
         this.cargoPlanes = cargoPlanes;
     }
 
-    public void setLongDistancePlanes(ArrayList<LongDistancePlane> longDistancePlanes) {
+    public void setLongDistancePlanes(List<LongDistancePlane> longDistancePlanes) {
         this.longDistancePlanes = longDistancePlanes;
     }
 
-    public void setMediumDistancePlanes(ArrayList<MediumDistancePlane> mediumDistancePlanes) {
+    public void setMediumDistancePlanes(List<MediumDistancePlane> mediumDistancePlanes) {
         this.mediumDistancePlanes = mediumDistancePlanes;
     }
 
-    public void setPrivatePlanes(ArrayList<PrivatePlane> privatePlanes) {
+    public void setPrivatePlanes(List<PrivatePlane> privatePlanes) {
         this.privatePlanes = privatePlanes;
     }
 
-    public void setShortDistancePlanes(ArrayList<ShortDistancePlane> shortDistancePlanes) {
+    public void setShortDistancePlanes(List<ShortDistancePlane> shortDistancePlanes) {
         this.shortDistancePlanes = shortDistancePlanes;
     }
 

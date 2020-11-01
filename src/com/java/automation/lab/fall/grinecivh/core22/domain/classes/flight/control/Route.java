@@ -10,10 +10,11 @@ import java.util.*;
 public class Route {
     private static final double EARTH_RADIUS = 6371;
     private Airport mainAirport;
-    private HashMap<String, HashMap<String, Integer>> routes = new HashMap<>();  // First String = name of the route, Integer = distance
+    private Map<String, Map<String, Integer>> routes;  // First String = name of the route, Integer = distance
 
     public Route(Airport mainAirport) {
         this.mainAirport = mainAirport;
+        new HashMap<>();
     }
 
     public void addRoute(String routeName, Airport... airportSequence) {
@@ -31,7 +32,7 @@ public class Route {
         }
     }
 
-    public HashMap<String, Integer> getRoute(String routeName){
+    public Map<String, Integer> getRoute(String routeName){
         return routes.get(routeName);
     }
 
@@ -44,7 +45,7 @@ public class Route {
 
     public int getMaxDistance(String routeName) {
 
-        HashMap<String,Integer> hm = routes.get(routeName);
+        Map<String,Integer> hm = routes.get(routeName);
 
         int maxDist = 0;
         for (Integer distance : hm.values()){
@@ -57,13 +58,13 @@ public class Route {
     }
 
     public int getDistance(String routeName, String address){
-        HashMap<String,Integer> hm = routes.get(routeName);
+        Map<String,Integer> hm = routes.get(routeName);
 
         return hm.get(address);
     }
 
     public Class findPassengerPlaneClass(String routeName, String address){
-        HashMap<String,Integer> hm = routes.get(routeName);
+        Map<String,Integer> hm = routes.get(routeName);
         int distance = hm.get(address);
 
         Class cl = null;

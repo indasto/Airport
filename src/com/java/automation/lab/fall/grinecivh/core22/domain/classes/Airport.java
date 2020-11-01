@@ -59,7 +59,7 @@ public class Airport {
         this.registry = registry;
     }
 
-    public void setSecurities(ArrayList<Security> securities) {
+    public void setSecurities(List<Security> securities) {
         this.securities = securities;
     }
 

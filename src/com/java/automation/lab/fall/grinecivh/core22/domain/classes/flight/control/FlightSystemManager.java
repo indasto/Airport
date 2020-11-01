@@ -10,47 +10,50 @@ import java.util.*;
 
 public class FlightSystemManager {
     private PlaneManager pm;
-    private List<FlightArrive> flightArrives;
-    private List<FlightDeparture> flightDepartures;
+    private Queue<FlightArrive> flightArrives;
+    private Queue<FlightDeparture> flightDepartures;
     private Route routes;
+
+    public FlightSystemManager(PlaneManager pm, Route route) {
+        this.pm = pm;
+        this.routes = route;
+        flightArrives = new ArrayDeque<>();
+        flightDepartures = new ArrayDeque<>();
+    }
 
     public String getTicketId(Ticket ticket) {
 
         FlightDeparture fd = ticket.getFlight();
 
-        for (int i = 0; i < flightDepartures.size(); i++) {
-            if (flightDepartures.get(i).equals(fd)) {
+        final String[] ticketId = {null};
+
+        flightDepartures.forEach((FlightDeparture flight) -> {
+            if (flight.equals(fd)) {
                 ClassLevel classLvl = ticket.getCl();
                 if (classLvl == ClassLevel.FIRST) {
-                    return "First class " + flightDepartures.get(i).getPlane().getName() + flightDepartures.get(i).getPlane().bookFirstClassSit();
+                    ticketId[0] = "First class " + flight.getPlane().getName() + flight.getPlane().bookFirstClassSit();
                 } else if (classLvl == ClassLevel.BUSINESS) {
-                    return "Business class " + flightDepartures.get(i).getPlane().getName() + flightDepartures.get(i).getPlane().bookFirstClassSit();
+                    ticketId[0] = "Business class " + flight.getPlane().getName() + flight.getPlane().bookFirstClassSit();
                 } else if (classLvl == ClassLevel.ECONOM) {
-                    return "Econom class " + flightDepartures.get(i).getPlane().getName() + flightDepartures.get(i).getPlane().bookFirstClassSit();
+                    ticketId[0] = "Econom class " + flight.getPlane().getName() + flight.getPlane().bookFirstClassSit();
                 }
             }
-        }
+        });
 
-        return null;
+        return ticketId[0];
     }
 
-    public FlightSystemManager(PlaneManager pm, Route route) {
-        this.pm = pm;
-        this.routes = route;
-        flightArrives = new LinkedList<>();
-        flightDepartures = new LinkedList<>();
+    public boolean offerArriveFlight(FlightArrive fa) {
+        return flightArrives.offer(fa);
     }
 
-    public void addArriveFlight(FlightArrive fa) {
-        flightArrives.add(fa);
+    public boolean offerDepartureFlight(FlightDeparture fd) {
+        return flightDepartures.offer(fd);
     }
 
-    public void addDepartureFlight(FlightDeparture fd) {
-        flightDepartures.add(fd);
-    }
-
-    public void addDepartureFlight(String routName, AirlineCompany airlineCompany) {
-        HashMap<String, Integer> route = routes.getRoute(routName);
+    public boolean offerDepartureFlight(String routName, AirlineCompany airlineCompany) {
+        Map<String, Integer> route = routes.getRoute(routName);
+        boolean isAdded = true;
         for (Map.Entry<String, Integer> entry : route.entrySet()) {
 
             Class planeClass = routes.findPassengerPlaneClass(routName, entry.getKey());
@@ -58,15 +61,34 @@ public class FlightSystemManager {
             if (pm.isPlaneAvailable(planeClass)) {
                 plane = pm.getPassengerPlane(planeClass);
             }
-            flightDepartures.add(new FlightDeparture(entry.getKey(), entry.getValue(), plane, airlineCompany));
+            if (!flightDepartures.offer(new FlightDeparture(entry.getKey(), entry.getValue(), plane, airlineCompany))) {
+                isAdded = false;
+            }
         }
+        return isAdded;
     }
 
-    public List<FlightArrive> getFlightArrives() {
+    public FlightDeparture pollDepartureFlight() {
+        return flightDepartures.poll();
+    }
+
+    public FlightArrive pollArriveFlight() {
+        return flightArrives.poll();
+    }
+
+    public FlightDeparture peekDepartureFlight() {
+        return flightDepartures.peek();
+    }
+
+    public FlightArrive peekArriveFlight() {
+        return flightArrives.peek();
+    }
+
+    public Queue<FlightArrive> getFlightArrives() {
         return flightArrives;
     }
 
-    public List<FlightDeparture> getFlightDepartures() {
+    public Queue<FlightDeparture> getFlightDepartures() {
         return flightDepartures;
     }
 
@@ -74,11 +96,11 @@ public class FlightSystemManager {
         return pm;
     }
 
-    public void setFlightArrives(LinkedList<FlightArrive> flightArrives) {
+    public void setFlightArrives(Queue<FlightArrive> flightArrives) {
         this.flightArrives = flightArrives;
     }
 
-    public void setFlightDepartures(LinkedList<FlightDeparture> flightDepartures) {
+    public void setFlightDepartures(Queue<FlightDeparture> flightDepartures) {
         this.flightDepartures = flightDepartures;
     }
 

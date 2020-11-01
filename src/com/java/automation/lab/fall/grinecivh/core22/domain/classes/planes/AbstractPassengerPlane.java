@@ -2,8 +2,6 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.MaxDistanceException;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans.Steward;
-import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Fly;
-import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Refuel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +79,7 @@ public abstract class AbstractPassengerPlane extends AbstractPlane {
         this.totalFirstClassSits = totalFirstClassSits;
     }
 
-    public void setStewards(ArrayList<Steward> stewards) {
+    public void setStewards(List<Steward> stewards) {
         this.stewards = stewards;
     }
 

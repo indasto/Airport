@@ -39,15 +39,15 @@ public class Client extends AbstractHuman {
         return tickets;
     }
 
-    public void setCarryOnLuggages(ArrayList<CarryOnLuggage> carryOnLuggages) {
+    public void setCarryOnLuggages(List<CarryOnLuggage> carryOnLuggages) {
         this.carryOnLuggages = carryOnLuggages;
     }
 
-    public void setRegularLuggages(ArrayList<RegularLuggage> regularLuggages) {
+    public void setRegularLuggages(List<RegularLuggage> regularLuggages) {
         this.regularLuggages = regularLuggages;
     }
 
-    public void setTickets(ArrayList<Ticket> tickets) {
+    public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
     }
 

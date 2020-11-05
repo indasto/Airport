@@ -2,11 +2,11 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes;
 
 public class PlaneFactory {
 
-    public static AbstractPlane createPassengerPlane(double currentFuel, double maxFuel, double priceOfAPlane, int yearOfCommissioning,
+    public static AbstractPassengerPlane createPassengerPlane(double currentFuel, double maxFuel, double priceOfAPlane, int yearOfCommissioning,
                                                      double fuelConsumptionPerKm, String name, int totalFirstClassSits,
                                                      int totalBusinessClassSits, int totalEconomClassSits,
-                                                     int maxFlightDistanceKm) {
-
+                                                     int maxFlightDistanceKm)
+    {
         AbstractPassengerPlane plane = null;
 
         if (totalBusinessClassSits == 0 && totalEconomClassSits == 0) {
@@ -18,11 +18,10 @@ public class PlaneFactory {
         } else if (maxFlightDistanceKm <= 5000) {
             plane = new MediumDistancePlane(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm,
                     name, totalFirstClassSits, totalBusinessClassSits, totalEconomClassSits, maxFlightDistanceKm);
-        } else if (maxFlightDistanceKm <= 15000){
+        } else if (maxFlightDistanceKm <= 15000) {
             plane = new LongDistancePlane(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm,
                     name, totalFirstClassSits, totalBusinessClassSits, totalEconomClassSits, maxFlightDistanceKm);
         }
-
 
         return plane;
     }

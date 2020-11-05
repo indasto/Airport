@@ -26,16 +26,17 @@ public class Registry {
         }
     }
 
-    public void addClient(Client cl)  {
+    public void addClient(Client client)  {
 
-        List<Ticket> tickets = cl.getTickets();
-        for (int i = 0; i <tickets.size();i++) {
-            String id = fm.getTicketId(tickets.get(i));
-            tickets.get(i).setFlightId(id);
-        }
+        List<Ticket> tickets = client.getTickets();
 
-        Price.calculatePrice(cl);
-        clients.add(cl);
+        tickets.stream().forEach(ticket -> {
+            String id = fm.getTicketId(ticket);
+            ticket.setFlightId(id);
+        });
+
+        Price.calculatePrice(client);
+        clients.add(client);
     }
 
 

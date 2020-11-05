@@ -3,6 +3,7 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control.Route;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PlaneManager {
 
@@ -96,13 +97,9 @@ public class PlaneManager {
 
     private boolean isItAvailable(List<? extends AbstractPlane> plane) {
 
-        for (int i = 0; i < plane.size(); i++) {
-            if (!plane.get(i).isInFlight()) {
-                return true;
-            }
-        }
+        Boolean available = plane.stream().anyMatch(pl ->{ return  pl.isInFlight(); });
 
-        return false;
+        return available;
     }
 
     public List<CargoPlane> getCargoPlanes() {

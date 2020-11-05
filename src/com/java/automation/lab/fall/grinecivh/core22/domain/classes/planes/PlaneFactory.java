@@ -7,9 +7,10 @@ public class PlaneFactory {
                                                      int totalBusinessClassSits, int totalEconomClassSits,
                                                      int maxFlightDistanceKm)
     {
-        T plane = null;
+        T plane = (T) new AbstractPassengerPlane(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm,
+                name, totalFirstClassSits, totalBusinessClassSits, totalEconomClassSits, maxFlightDistanceKm);
 
-        if (totalBusinessClassSits == 0 && totalEconomClassSits == 0) {
+        /*if (totalBusinessClassSits == 0 && totalEconomClassSits == 0) {
             plane =(T) new PrivatePlane(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm,
                     name, totalFirstClassSits, maxFlightDistanceKm);
         } else if (maxFlightDistanceKm > 50 && maxFlightDistanceKm <= 2500) {
@@ -21,7 +22,7 @@ public class PlaneFactory {
         } else if (maxFlightDistanceKm <= 15000) {
             plane =(T) new LongDistancePlane(currentFuel, maxFuel, priceOfAPlane, yearOfCommissioning, fuelConsumptionPerKm,
                     name, totalFirstClassSits, totalBusinessClassSits, totalEconomClassSits, maxFlightDistanceKm);
-        }
+        }*/
 
         return plane;
     }

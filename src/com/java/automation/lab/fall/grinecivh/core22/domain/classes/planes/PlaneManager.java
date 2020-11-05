@@ -3,9 +3,8 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control.Route;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-public class PlaneManager {
+public class PlaneManager <T> {
 
     private List<CargoPlane> cargoPlanes;
     private List<ShortDistancePlane> shortDistancePlanes;
@@ -14,16 +13,17 @@ public class PlaneManager {
     private List<PrivatePlane> privatePlanes;
     private Route route;
 
-    public PlaneManager(CargoPlane[] cp, ShortDistancePlane[] up, MediumDistancePlane[] bp, LongDistancePlane[] ep) throws RuntimeException {
+    public PlaneManager(List<CargoPlane> cp, List<ShortDistancePlane> sdp, List<MediumDistancePlane> mdp,
+                        List<LongDistancePlane> ldp) throws RuntimeException {
 
-        if (cp == null || up == null || bp == null || ep == null) {
+        if (cp == null || sdp == null || mdp == null || ldp == null) {
             throw new RuntimeException();
         }
 
-        Collections.addAll(cargoPlanes, cp);
-        Collections.addAll(shortDistancePlanes, up);
-        Collections.addAll(mediumDistancePlanes, bp);
-        Collections.addAll(longDistancePlanes, ep);
+        cargoPlanes = cp;
+        shortDistancePlanes = sdp;
+        mediumDistancePlanes = mdp;
+        longDistancePlanes = ldp;
     }
 
     public PlaneManager(){

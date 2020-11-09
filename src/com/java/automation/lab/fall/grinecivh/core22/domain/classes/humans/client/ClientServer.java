@@ -40,32 +40,37 @@ public class ClientServer {
                 clientSocket = socket;
                 InputStreamReader isr = new InputStreamReader(clientSocket.getInputStream());
                 reader = new BufferedReader(isr);
-            } catch (Exception ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
+
         }
 
         @Override
         public void run() {
             System.out.println("new connection");
 
-            String firstName = null;
-            String lastName = null;
-            Integer age = null;
+            String firstName = "";
+            String lastName = "";
+            String age = "";
 
             try {
                 firstName = reader.readLine();
                 lastName = reader.readLine();
-                age = Integer.parseInt(reader.readLine());
+                age = reader.readLine();
 
-                Client cl = new Client(firstName, lastName, age);
+                Client cl = new Client(firstName, lastName, Integer.parseInt(age));
                 airport.getRegistry().addClient(cl);
                 System.out.println(cl);
             } catch (Exception ex) {
                 ex.printStackTrace();
+            } finally {
+                try {
+                    clientSocket.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
-
-
         }
     }
 }

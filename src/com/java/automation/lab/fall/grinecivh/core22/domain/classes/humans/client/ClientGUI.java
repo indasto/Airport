@@ -8,22 +8,23 @@ import java.io.*;
 import java.net.Socket;
 
 public class ClientGUI {
-    JTextField firstNameField;
-    JTextField lastNameField;
-    JTextField ageField;
-    PrintWriter writer;
-    Socket sock;
+    private JTextField firstNameField;
+    private JTextField lastNameField;
+    private JTextField ageField;
+    private PrintWriter writer;
+    private final String serverIP = "127.0.0.1";
+    private final int serverPort = 7777;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new ClientGUI().launch();
     }
 
-    public void launch(){
+    public void launch() {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel mainPanel = new JPanel();
         JPanel fieldPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         firstNameField = new JTextField(15);
         lastNameField = new JTextField(15);
@@ -36,6 +37,8 @@ public class ClientGUI {
         JButton sendButton = new JButton("Create");
         sendButton.addActionListener(new SendButtonListener());
 
+        setUpNetwork();
+
         fieldPanel.add(firstNameLabel);
         fieldPanel.add(firstNameField);
         fieldPanel.add(lastNameLabel);
@@ -45,23 +48,20 @@ public class ClientGUI {
         mainPanel.add(fieldPanel);
         mainPanel.add(sendButton);
 
-        setUpNetwork();
-
         frame.getContentPane().add(BorderLayout.CENTER, mainPanel);
-        frame.setSize(200,300);
+        frame.setSize(200, 300);
         frame.setVisible(true);
     }
 
-    private void setUpNetwork(){
-        try {
-            sock = new Socket("127.0.0.1", 7777);
+    private void setUpNetwork() {
+        try (Socket sock = new Socket(serverIP, serverPort);) {
             writer = new PrintWriter(sock.getOutputStream());
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public class SendButtonListener implements ActionListener{
+    public class SendButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {

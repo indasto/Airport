@@ -1,6 +1,6 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.interfaces;
 
-public interface FlightProcessing {
+public interface FlightProcess {
 
     public void takeoff(int time);
 

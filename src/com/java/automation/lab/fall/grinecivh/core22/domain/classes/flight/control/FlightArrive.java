@@ -1,14 +1,13 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.AirlineCompany;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.AbstractPassengerPlane;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.planes.AbstractPlane;
-import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.FlightProcessing;
+import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.FlightProcess;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
-public class FlightArrive implements FlightProcessing {
+public class FlightArrive implements FlightProcess {
 
     private String comesFrom;
     private OffsetDateTime dateOfArrive;

@@ -2,10 +2,12 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans.clie
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control.FlightDeparture;
 import com.java.automation.lab.fall.grinecivh.core22.domain.enums.*;
+import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.TicketProcess;
 
 import java.util.Objects;
+import java.util.Scanner;
 
-public class Ticket {
+public class Ticket implements TicketProcess {
     private AccessLevel al;
     private ClassLevel cl;
     private String flightId;
@@ -19,8 +21,46 @@ public class Ticket {
         this.flight = flight;
     }
 
-    public static Ticket createTicket(AccessLevel accessLevel, ClassLevel classLevel, String flightId, FlightDeparture flight){
+    @Override
+    public void run() {
 
+            synchronized (this) {
+                Scanner sc = new Scanner(System.in);
+                String change = null;
+
+                do {
+                    String input;
+                    System.out.println("What do you want to change? (Access level, Class level, exit)");
+                    input = sc.nextLine();
+                    if (input.equals("Access level")) {
+                        System.out.println("Input new access level (A1 ,A2, B1, B2, C)");
+                        input = sc.nextLine();
+                        if (input.equals("A1") || input.equals("A2") || input.equals("B1") || input.equals("B2") || input.equals("C")) {
+                            change = input;
+                            al = AccessLevel.valueOf(change);
+                        }
+                    } else if (input.equals("Class level")) {
+                        System.out.println("Input new Class level (First, Business, Econom)");
+                        input = sc.nextLine();
+                        if (input.equals("First") || input.equals("Business") || input.equals("Econom")) {
+                            change = input;
+                            cl = ClassLevel.valueOf(change.toUpperCase());
+                        }
+                    }
+                } while (change == null);
+
+                sc.close();
+            }
+
+    }
+
+    @Override
+    public void edit() {
+        Thread thread = new Thread(this,flightId);
+        thread.start();
+    }
+
+    public static Ticket createTicket(AccessLevel accessLevel, ClassLevel classLevel, String flightId, FlightDeparture flight){
         return new Ticket(accessLevel,classLevel,flightId,flight);
     }
 

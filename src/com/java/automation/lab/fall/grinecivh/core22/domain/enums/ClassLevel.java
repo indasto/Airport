@@ -14,7 +14,6 @@ public enum ClassLevel {
         return cl;
     }
 
-
     @Override
     public String toString() {
         return "Class level: "+cl;

@@ -54,7 +54,8 @@ public class ClientGUI {
     }
 
     private void setUpNetwork() {
-        try (Socket sock = new Socket(serverIP, serverPort);) {
+        try  {
+            Socket sock = new Socket(serverIP, serverPort);
             writer = new PrintWriter(sock.getOutputStream());
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -14,6 +14,10 @@ public class Airport {
     private double longitude;
     private List<AirlineCompany> airlineCompanies;
 
+    public Airport(){
+        registry = new Registry();
+    }
+
     public Airport(Registry reg, int code, String name, String address, double latitude, double longitude) {
         this.registry = reg;
         this.code = code;

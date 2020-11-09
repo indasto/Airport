@@ -26,6 +26,10 @@ public class Registry {
         }
     }
 
+    public Registry() {
+        clients = new LinkedList<>();
+    }
+
     public void addClient(Client client)  {
 
         List<Ticket> tickets = client.getTickets();

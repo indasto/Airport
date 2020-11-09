@@ -19,6 +19,13 @@ public class Client extends AbstractHuman {
         tickets = new LinkedList<>();
     }
 
+    public Client(String firstName, String lastName, int age) {
+        super(firstName,lastName,age);
+        carryOnLuggages = new ArrayList<>();
+        regularLuggages = new ArrayList<>();
+        tickets = new LinkedList<>();
+    }
+
     public void addLuggage(String name, double kg){
         if (kg < 5){
             carryOnLuggages.add(new CarryOnLuggage(name,kg));
@@ -86,7 +93,7 @@ public class Client extends AbstractHuman {
     @Override
     public String toString() {
         return super.toString() +
-                "Carry on Luggage: " + carryOnLuggages +
+                ",  Carry on Luggage: " + carryOnLuggages +
                 ", Regular Luggage: " + regularLuggages +
                 ", tickets: " + tickets +
                 ", total price: " + totalPrice;

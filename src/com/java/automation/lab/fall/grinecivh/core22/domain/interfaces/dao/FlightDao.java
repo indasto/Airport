@@ -1,9 +1,9 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.dao;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control.entity.FlightArrive;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.flight.control.entity.FlightDeparture;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.main.entity.AirlineCompany;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.ticket.Ticket;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightArrive;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightDeparture;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.AirlineCompany;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.ticket.Ticket;
 
 public interface FlightDao {
     public String getTicketId(Ticket ticket);

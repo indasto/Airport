@@ -1,7 +1,7 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.util;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.humans.client.entity.Client;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.ticket.Ticket;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.client.Client;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.ticket.Ticket;
 import com.java.automation.lab.fall.grinecivh.core22.domain.enums.ClassLevel;
 
 import java.util.List;

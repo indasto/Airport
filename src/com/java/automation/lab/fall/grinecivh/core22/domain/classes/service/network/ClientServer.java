@@ -61,7 +61,7 @@ public class ClientServer {
                 age = reader.readLine();
 
                 Client cl = new Client(firstName, lastName, Integer.parseInt(age));
-                airport.getRegistry().addClient(cl);
+                airport.getClientService().addClient(cl);
                 System.out.println(cl);
             } catch (Exception ex) {
                 ex.printStackTrace();

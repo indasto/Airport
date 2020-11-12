@@ -2,48 +2,29 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.impleme
 
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.client.Client;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.worker.ServiceEmployees;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.ticket.Ticket;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.service.FlightService;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.util.Price;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.ClientDao;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.ClientDao;
 
 import java.util.*;
 
 public class ClientDaoImpl implements ClientDao {
-    private static ClientDaoImpl clientDaoImpl;
-    private List<ServiceEmployees> airportPersonals;
+
     private List<Client> clients;
-    private FlightDaoImpl fm;
+    private FlightService fm;
 
-    private ClientDaoImpl(FlightDaoImpl fm, ServiceEmployees... se) {
+    public ClientDaoImpl(FlightService fm) {
+
         this.fm = fm;
-        airportPersonals = new ArrayList<>();
         clients = new LinkedList<>();
 
-        for (int i = 0; i < se.length; i++) {
-            airportPersonals.add(se[i]);
-        }
     }
 
-    private ClientDaoImpl() {
+    public ClientDaoImpl() {
         clients = new LinkedList<>();
     }
 
-    public static ClientDaoImpl createRegistry() {
-        if (clientDaoImpl == null) {
-            return new ClientDaoImpl();
-        } else {
-            return clientDaoImpl;
-        }
-    }
-
-    public static ClientDaoImpl createRegistry(FlightDaoImpl fm, ServiceEmployees... se) {
-        if (clientDaoImpl == null) {
-            return new ClientDaoImpl(fm,se);
-        } else {
-            return clientDaoImpl;
-        }
-    }
 
     public void addClient(Client client)  {
 
@@ -62,55 +43,41 @@ public class ClientDaoImpl implements ClientDao {
         clients.remove(client);
     }
 
-    public List<ServiceEmployees> getAirportPersonals() {
-        return airportPersonals;
-    }
-
-    public FlightDaoImpl getFm() {
-        return fm;
-    }
-
     public List<Client> getClients() {
         return clients;
-    }
-
-    public void setAirportPersonals(List<ServiceEmployees> airportPersonals) {
-        this.airportPersonals = airportPersonals;
     }
 
     public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 
-    public void setFm(FlightDaoImpl fm) {
+    public FlightService getFm() {
+        return fm;
+    }
+
+    public void setFm(FlightService fm) {
         this.fm = fm;
     }
 
     @Override
-    public String toString() {
-        return "Service employees: " + airportPersonals + ", clients: " + clients +
-                ", Flight system manager: " + fm;
-    }
-
-    @Override
-    public boolean equals(Object ref) {
-        if (this == ref) {
-            return true;
-        }
-
-        if (ref == null || getClass() != ref.getClass()) {
-            return false;
-        }
-
-        ClientDaoImpl clientDaoImpl = (ClientDaoImpl) ref;
-
-        return  Objects.equals(airportPersonals, clientDaoImpl.airportPersonals) &&
-                Objects.equals(clients, clientDaoImpl.clients) &&
-                Objects.equals(fm, clientDaoImpl.fm);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientDaoImpl clientDao = (ClientDaoImpl) o;
+        return Objects.equals(clients, clientDao.clients) &&
+                Objects.equals(fm, clientDao.fm);
     }
 
     @Override
     public int hashCode() {
-        return clients.hashCode()+ airportPersonals.hashCode();
+        return Objects.hash(clients, fm);
+    }
+
+    @Override
+    public String toString() {
+        return "ClientDaoImpl{" +
+                "clients=" + clients +
+                ", fm=" + fm +
+                '}';
     }
 }

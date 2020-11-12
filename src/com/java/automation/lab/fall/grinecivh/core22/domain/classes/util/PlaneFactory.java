@@ -1,4 +1,4 @@
-package com.java.automation.lab.fall.grinecivh.core22.domain.classes.service;
+package com.java.automation.lab.fall.grinecivh.core22.domain.classes.util;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.AbstractPassengerPlane;
 

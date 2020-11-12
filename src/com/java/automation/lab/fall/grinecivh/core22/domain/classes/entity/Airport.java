@@ -1,13 +1,13 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.ClientDaoImpl;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.service.ClientService;
 
 import java.security.Security;
 import java.util.*;
 
 public class Airport {
 
-    private ClientDaoImpl clientDaoImpl;
+    private ClientService clientService;
     private List<Security> securities;
     private int code;
     private String name;
@@ -17,11 +17,11 @@ public class Airport {
     private List<AirlineCompany> airlineCompanies;
 
     public Airport() {
-        clientDaoImpl = ClientDaoImpl.createRegistry();
+        clientService = ClientService.getClientService();
     }
 
-    public Airport(ClientDaoImpl reg, int code, String name, String address, double latitude, double longitude) {
-        this.clientDaoImpl = reg;
+    public Airport(ClientService clientService, int code, String name, String address, double latitude, double longitude) {
+        this.clientService = clientService;
         this.code = code;
         this.name = name;
         this.address = address;
@@ -53,16 +53,16 @@ public class Airport {
         return company;
     }
 
-    public ClientDaoImpl getRegistry() {
-        return clientDaoImpl;
+    public ClientService getClientService() {
+        return clientService;
     }
 
     public List<Security> getSecurities() {
         return securities;
     }
 
-    public void setRegistry(ClientDaoImpl clientDaoImpl) {
-        this.clientDaoImpl = clientDaoImpl;
+    public void setClientService(ClientService clientService) {
+        this.clientService = clientService;
     }
 
     public void setSecurities(List<Security> securities) {
@@ -112,7 +112,7 @@ public class Airport {
 
     @Override
     public String toString() {
-        return "Airport location: " + address + "Name: " + name + "ClientDaoImpl: " + clientDaoImpl + ", securities: " + securities +
+        return "Airport location: " + address + "Name: " + name + "ClientService: " + clientService + ", securities: " + securities +
                 ", Airport code" + code;
     }
 
@@ -122,7 +122,7 @@ public class Airport {
         if (o == null || getClass() != o.getClass()) return false;
         Airport airport = (Airport) o;
         return code == airport.code &&
-                Objects.equals(clientDaoImpl, airport.clientDaoImpl) &&
+                Objects.equals(clientService, airport.clientService) &&
                 Objects.equals(securities, airport.securities) &&
                 Objects.equals(name, airport.name) &&
                 Objects.equals(address, airport.address);
@@ -130,6 +130,6 @@ public class Airport {
 
     @Override
     public int hashCode() {
-        return clientDaoImpl.hashCode() + securities.hashCode();
+        return clientService.hashCode() + securities.hashCode();
     }
 }

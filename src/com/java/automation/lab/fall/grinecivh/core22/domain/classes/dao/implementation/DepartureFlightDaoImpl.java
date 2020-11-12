@@ -1,28 +1,21 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.DepartureFlightDao;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.AirlineCompany;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.Route;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightArrive;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightDeparture;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.ticket.Ticket;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.Route;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.AbstractPassengerPlane;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.ticket.Ticket;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.service.PlaneService;
 import com.java.automation.lab.fall.grinecivh.core22.domain.enums.ClassLevel;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.FlightDao;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Queue;
 
-public class FlightDaoImpl implements FlightDao {
-    private PlaneDaoImpl pm;
-    private Queue<FlightArrive> flightArrives;
+public class DepartureFlightDaoImpl implements DepartureFlightDao {
+    private PlaneService pm;
     private Queue<FlightDeparture> flightDepartures;
     private Route routes;
-
-    public FlightDaoImpl(PlaneDaoImpl pm, Route route) {
-        this.pm = pm;
-        this.routes = route;
-        flightArrives = new ArrayDeque<>();
-        flightDepartures = new ArrayDeque<>();
-    }
 
     public String getTicketId(Ticket ticket) {
 
@@ -46,10 +39,6 @@ public class FlightDaoImpl implements FlightDao {
         return ticketId[0];
     }
 
-    public boolean offerArriveFlight(FlightArrive fa) {
-        return flightArrives.offer(fa);
-    }
-
     public boolean offerDepartureFlight(FlightDeparture fd) {
         return flightDepartures.offer(fd);
     }
@@ -71,72 +60,15 @@ public class FlightDaoImpl implements FlightDao {
         return isAdded;
     }
 
-    public FlightDeparture pollDepartureFlight() {
-        return flightDepartures.poll();
-    }
-
-    public FlightArrive pollArriveFlight() {
-        return flightArrives.poll();
-    }
-
     public FlightDeparture peekDepartureFlight() {
         return flightDepartures.peek();
     }
 
-    public FlightArrive peekArriveFlight() {
-        return flightArrives.peek();
-    }
-
-    public Queue<FlightArrive> getFlightArrives() {
-        return flightArrives;
-    }
-
-    public Queue<FlightDeparture> getFlightDepartures() {
-        return flightDepartures;
-    }
-
-    public PlaneDaoImpl getPm() {
-        return pm;
-    }
-
-    public void setFlightArrives(Queue<FlightArrive> flightArrives) {
-        this.flightArrives = flightArrives;
+    public FlightDeparture pollDepartureFlight() {
+        return flightDepartures.poll();
     }
 
     public void setFlightDepartures(Queue<FlightDeparture> flightDepartures) {
         this.flightDepartures = flightDepartures;
-    }
-
-    public void setPm(PlaneDaoImpl pm) {
-        this.pm = pm;
-    }
-
-
-    @Override
-    public String toString() {
-        return
-                "Plane Manager: " + pm + ", Flight Arrives=" + flightArrives +
-                        ", FlightDepartures=" + flightDepartures;
-    }
-
-    @Override
-    public boolean equals(Object ref) {
-        if (this == ref) {
-            return true;
-        }
-
-        if (ref == null || getClass() != ref.getClass()) {
-            return false;
-        }
-
-        FlightDaoImpl that = (FlightDaoImpl) ref;
-        return Objects.equals(pm, that.pm) &&
-                Objects.equals(flightArrives, that.flightArrives) &&
-                Objects.equals(flightDepartures, that.flightDepartures);
-    }
-
-    @Override
-    public int hashCode() {
-        return flightDepartures.hashCode() + flightArrives.hashCode() + pm.hashCode();
     }
 }

@@ -1,10 +1,10 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.LackOfFuelException;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.MaxFuelException;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.exception.LackOfFuelException;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.exception.MaxFuelException;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.worker.Pilot;
-import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.entity.Fly;
-import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.entity.Refuel;
+import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Fly;
+import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.Refuel;
 
 import java.util.*;
 

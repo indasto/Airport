@@ -1,8 +1,8 @@
-package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.plane;
+package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.Route;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.*;
-import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.dao.PlaneDao;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.PlaneDao;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.entity;
+package com.java.automation.lab.fall.grinecivh.core22.domain.interfaces;
 
 public interface FlightProcess {
 

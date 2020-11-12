@@ -1,6 +1,6 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.client;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.LuggageWeightException;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.exception.LuggageWeightException;
 
 public abstract class Luggage {
 

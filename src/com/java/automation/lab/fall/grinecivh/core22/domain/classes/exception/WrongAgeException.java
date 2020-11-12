@@ -1,4 +1,4 @@
-package com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception;
+package com.java.automation.lab.fall.grinecivh.core22.domain.classes.exception;
 
 public class WrongAgeException extends IllegalArgumentException{
 

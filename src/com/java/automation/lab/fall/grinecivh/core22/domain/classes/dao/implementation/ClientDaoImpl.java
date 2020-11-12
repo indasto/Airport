@@ -1,12 +1,11 @@
-package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.human.client;
+package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation;
 
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.flight.FlightDaoImpl;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.client.Client;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.worker.ServiceEmployees;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.ticket.Ticket;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.util.Price;
-import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.dao.ClientDao;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.ClientDao;
 
 import java.util.*;
 

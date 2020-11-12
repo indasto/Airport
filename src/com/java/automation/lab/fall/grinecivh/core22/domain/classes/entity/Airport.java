@@ -1,6 +1,6 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.human.client.ClientDaoImpl;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.ClientDaoImpl;
 
 import java.security.Security;
 import java.util.*;

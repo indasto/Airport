@@ -1,6 +1,6 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.WrongAgeException;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.exception.WrongAgeException;
 
 import java.util.Objects;
 

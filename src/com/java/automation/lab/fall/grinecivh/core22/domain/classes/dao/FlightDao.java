@@ -1,4 +1,4 @@
-package com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.dao;
+package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightArrive;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightDeparture;

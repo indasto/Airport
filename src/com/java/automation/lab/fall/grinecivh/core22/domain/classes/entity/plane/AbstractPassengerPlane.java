@@ -1,6 +1,6 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.MaxDistanceException;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.exception.MaxDistanceException;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.worker.Steward;
 
 import java.util.ArrayList;

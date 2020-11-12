@@ -2,7 +2,7 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flig
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.AbstractPassengerPlane;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.AbstractPlane;
-import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.entity.FlightProcess;
+import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.FlightProcess;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;

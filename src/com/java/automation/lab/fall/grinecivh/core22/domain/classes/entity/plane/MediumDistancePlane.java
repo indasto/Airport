@@ -1,6 +1,6 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.Exception.LackOfFuelException;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.exception.LackOfFuelException;
 
 public class MediumDistancePlane extends AbstractPassengerPlane {
 

@@ -1,4 +1,4 @@
-package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.flight;
+package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.AirlineCompany;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.Route;
@@ -6,9 +6,8 @@ import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.fligh
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightDeparture;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.ticket.Ticket;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.AbstractPassengerPlane;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.plane.PlaneDaoImpl;
 import com.java.automation.lab.fall.grinecivh.core22.domain.enums.ClassLevel;
-import com.java.automation.lab.fall.grinecivh.core22.domain.interfaces.dao.FlightDao;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.FlightDao;
 
 import java.util.*;
 

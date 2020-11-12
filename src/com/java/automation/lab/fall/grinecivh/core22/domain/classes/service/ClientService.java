@@ -1,6 +1,7 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.service;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.ClientDaoImpl;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.ClientDao;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.clientImpl.ClientDaoImpl;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.client.Client;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Objects;
 
 public class ClientService {
     private static ClientService clientService;
-    private ClientDaoImpl clientDao;
+    private ClientDao clientDao;
 
     private ClientService() {
     }
@@ -45,7 +46,7 @@ public class ClientService {
         ClientService.clientService = clientService;
     }
 
-    public ClientDaoImpl getClientDao() {
+    public ClientDao getClientDao() {
         return clientDao;
     }
 

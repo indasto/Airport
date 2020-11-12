@@ -4,6 +4,9 @@ import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.fligh
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightDeparture;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.AirlineCompany;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.ticket.Ticket;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.service.PlaneService;
+
+import java.util.Queue;
 
 public interface ArriveFlightDao {
 
@@ -13,4 +16,11 @@ public interface ArriveFlightDao {
 
     public FlightArrive peekArriveFlight();
 
+    public Queue<FlightArrive> getFlightArrives();
+
+    public PlaneService getPm();
+
+    public void setFlightArrives(Queue<FlightArrive> flightArrives);
+
+    public void setPm(PlaneService pm);
 }

@@ -1,8 +1,10 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.service;
 
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.ArriveFlightDaoImpl;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.DepartureFlightDaoImpl;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.ArriveFlightDao;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.DepartureFlightDao;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.flightImpl.ArriveFlightDaoImpl;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.flightImpl.DepartureFlightDaoImpl;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.AirlineCompany;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightArrive;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightDeparture;
@@ -12,8 +14,8 @@ import java.util.Objects;
 
 public class FlightService {
 
-    private ArriveFlightDaoImpl arriveFlightDao;
-    private DepartureFlightDaoImpl departureFlightDao;
+    private ArriveFlightDao arriveFlightDao;
+    private DepartureFlightDao departureFlightDao;
 
     public FlightService(ArriveFlightDaoImpl arriveFlightDao, DepartureFlightDaoImpl departureFlightDao) {
         this.arriveFlightDao = arriveFlightDao;
@@ -52,7 +54,7 @@ public class FlightService {
         return arriveFlightDao.peekArriveFlight();
     }
 
-    public ArriveFlightDaoImpl getArriveFlightDao() {
+    public ArriveFlightDao getArriveFlightDao() {
         return arriveFlightDao;
     }
 
@@ -60,15 +62,13 @@ public class FlightService {
         this.arriveFlightDao = arriveFlightDao;
     }
 
-    public DepartureFlightDaoImpl getDepartureFlightDao() {
+    public DepartureFlightDao getDepartureFlightDao() {
         return departureFlightDao;
     }
 
     public void setDepartureFlightDao(DepartureFlightDaoImpl departureFlightDao) {
         this.departureFlightDao = departureFlightDao;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

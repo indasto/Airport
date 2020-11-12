@@ -1,6 +1,7 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.service;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.*;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.PlaneDao;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.planeImpl.*;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.Route;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.*;
 
@@ -8,11 +9,11 @@ import java.util.*;
 
 public class PlaneService {
 
-    private CargoPlaneDaoImpl cargoPlaneDao;
-    private ShortDistancePlaneDaoImpl shortDistancePlaneDao;
-    private MediumDistancePlaneDaoImpl mediumDistancePlaneDao;
-    private LongDistancePlaneDaoImpl longDistancePlaneDao;
-    private PrivatePlaneDaoImpl privatePlaneDao;
+    private PlaneDao<CargoPlane> cargoPlaneDao;
+    private PlaneDao<ShortDistancePlane> shortDistancePlaneDao;
+    private PlaneDao<MediumDistancePlane> mediumDistancePlaneDao;
+    private PlaneDao<LongDistancePlane> longDistancePlaneDao;
+    private PlaneDao<PrivatePlane> privatePlaneDao;
     private Route route;
 
     public PlaneService(Route route) {
@@ -76,43 +77,43 @@ public class PlaneService {
         return plane;
     }
 
-    public CargoPlaneDaoImpl getCargoPlaneDao() {
+    public PlaneDao<CargoPlane> getCargoPlaneDao() {
         return cargoPlaneDao;
     }
 
-    public void setCargoPlaneDao(CargoPlaneDaoImpl cargoPlaneDao) {
+    public void setCargoPlaneDao(PlaneDao<CargoPlane> cargoPlaneDao) {
         this.cargoPlaneDao = cargoPlaneDao;
     }
 
-    public ShortDistancePlaneDaoImpl getShortDistancePlaneDao() {
+    public PlaneDao<ShortDistancePlane> getShortDistancePlaneDao() {
         return shortDistancePlaneDao;
     }
 
-    public void setShortDistancePlaneDao(ShortDistancePlaneDaoImpl shortDistancePlaneDao) {
+    public void setShortDistancePlaneDao(PlaneDao<ShortDistancePlane> shortDistancePlaneDao) {
         this.shortDistancePlaneDao = shortDistancePlaneDao;
     }
 
-    public MediumDistancePlaneDaoImpl getMediumDistancePlaneDao() {
+    public PlaneDao<MediumDistancePlane> getMediumDistancePlaneDao() {
         return mediumDistancePlaneDao;
     }
 
-    public void setMediumDistancePlaneDao(MediumDistancePlaneDaoImpl mediumDistancePlaneDao) {
+    public void setMediumDistancePlaneDao(PlaneDao<MediumDistancePlane> mediumDistancePlaneDao) {
         this.mediumDistancePlaneDao = mediumDistancePlaneDao;
     }
 
-    public LongDistancePlaneDaoImpl getLongDistancePlaneDao() {
+    public PlaneDao<LongDistancePlane> getLongDistancePlaneDao() {
         return longDistancePlaneDao;
     }
 
-    public void setLongDistancePlaneDao(LongDistancePlaneDaoImpl longDistancePlaneDao) {
+    public void setLongDistancePlaneDao(PlaneDao<LongDistancePlane> longDistancePlaneDao) {
         this.longDistancePlaneDao = longDistancePlaneDao;
     }
 
-    public PrivatePlaneDaoImpl getPrivatePlaneDao() {
+    public PlaneDao<PrivatePlane> getPrivatePlaneDao() {
         return privatePlaneDao;
     }
 
-    public void setPrivatePlaneDao(PrivatePlaneDaoImpl privatePlaneDao) {
+    public void setPrivatePlaneDao(PlaneDao<PrivatePlane> privatePlaneDao) {
         this.privatePlaneDao = privatePlaneDao;
     }
 
@@ -123,7 +124,6 @@ public class PlaneService {
     public void setRoute(Route route) {
         this.route = route;
     }
-
 
     @Override
     public String toString() {

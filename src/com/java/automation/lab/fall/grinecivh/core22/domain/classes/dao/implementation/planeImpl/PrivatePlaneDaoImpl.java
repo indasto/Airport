@@ -1,7 +1,6 @@
-package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation;
+package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.implementation.planeImpl;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.PlaneDao;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.CargoPlane;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.PrivatePlane;
 
 import java.util.ArrayList;

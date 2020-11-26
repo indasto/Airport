@@ -15,10 +15,10 @@ public class Client extends AbstractHuman {
 
     public Client(String firstName, String lastName, int age, Ticket ticket) {
         super(firstName,lastName,age);
-        tickets.add(ticket);
         carryOnLuggages = new ArrayList<>();
         regularLuggages = new ArrayList<>();
         tickets = new LinkedList<>();
+        tickets.add(ticket);
     }
 
     public Client(String firstName, String lastName, int age) {

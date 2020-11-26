@@ -4,59 +4,55 @@ import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human
 
 import java.util.Objects;
 
-public class Security extends AbstractWorker{
+public class Security extends AbstractWorker {
 
     private String equipment;
 
-    public Security(String firstName, String lastName, int age, int soot, double salary, String education) {
-        super(firstName, lastName, age, salary,education);
+    public Security(String firstName, String lastName, int age, double soot, int salary, String education) {
+        super(firstName, lastName, age, salary, soot, education);
         this.equipment = equipment;
     }
 
-    public void patrolArea() {}
+    public void patrolArea() {
+    }
 
-    public void checkForDocuments(){}
+    public void checkForDocuments() {
+    }
 
-    public void detainPerson(AbstractHuman person){}
+    public void detainPerson(AbstractHuman person) {
+    }
 
     public String getEquipment() {
         return equipment;
     }
 
-
     public void setEquipment(String equipment) {
         this.equipment = equipment;
     }
 
-
     @Override
-    public String toString() {
-        return super.toString() +
-                "Equipment: " + equipment;
-    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
-    @Override
-    public boolean equals(Object ref) {
+        Security security = (Security) o;
 
-        if (this == ref) {
-            return true;
-        }
-
-        if (ref == null || getClass() != ref.getClass()) {
-            return false;
-        }
-
-        if (!super.equals(ref)) {
-            return false;
-        }
-
-        Security security = (Security) ref;
-
-        return Objects.equals(equipment, security.equipment);
+        return equipment != null ? equipment.equals(security.equipment) : security.equipment == null;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + equipment.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + (equipment != null ? equipment.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Security{");
+        sb.append("equipment='").append(equipment).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

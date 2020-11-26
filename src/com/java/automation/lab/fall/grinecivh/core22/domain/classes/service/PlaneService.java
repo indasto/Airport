@@ -16,10 +16,6 @@ public class PlaneService {
     private Route route;
 
     public PlaneService(Route route) {
-        shortDistancePlaneDao = new PlaneDaoImpl<>();
-        mediumDistancePlaneDao = new PlaneDaoImpl<>();
-        longDistancePlaneDao = new PlaneDaoImpl();
-        privatePlaneDao = new PlaneDaoImpl<>();
         this.route = route;
     }
 

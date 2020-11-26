@@ -2,7 +2,6 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.service;
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.constant.PropertyConstant;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.PlaneDao;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.util.Route;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.*;
 
 import java.util.List;
@@ -13,10 +12,8 @@ public class PlaneService extends BaseService {
     private PlaneDao<MediumDistancePlane> mediumDistancePlaneDao = MEDIUM_PLANE_DAOS.get(PROPS.getValue(PropertyConstant.ENV_KEY));
     private PlaneDao<LongDistancePlane> longDistancePlaneDao = LONG_PLANE_DAOS.get(PROPS.getValue(PropertyConstant.ENV_KEY));
     private PlaneDao<PrivatePlane> privatePlaneDao = PRIVATE_PLANE_DAOS.get(PROPS.getValue(PropertyConstant.ENV_KEY));
-    private Route route;
 
-    public PlaneService(Route route) {
-        this.route = route;
+    public PlaneService() {
     }
 
     public boolean isPlaneAvailable(Class<?> cl) {
@@ -98,6 +95,20 @@ public class PlaneService extends BaseService {
         }
 
         return null;
+    }
+
+    public <T extends AbstractPassengerPlane> void update(T plane) {
+        Class<?> cl = plane.getClass();
+
+        if (cl.equals(ShortDistancePlane.class)) {
+            shortDistancePlaneDao.update((ShortDistancePlane) plane);
+        } else if (cl.equals(MediumDistancePlane.class)) {
+            mediumDistancePlaneDao.update((MediumDistancePlane) plane);
+        } else if (cl.equals(LongDistancePlane.class)) {
+            longDistancePlaneDao.update((LongDistancePlane) plane);
+        } else if (cl.equals(PrivatePlane.class)) {
+            privatePlaneDao.update((PrivatePlane) plane);
+        }
     }
 
     public int deleteById(int id, Class<?> cl) {

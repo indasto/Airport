@@ -10,12 +10,13 @@ public class Route {
 
     // String = название всего пути, который может включать в себя несколько пересадок. Полный путь состоит из
     // аэропортов, т.е. полёт из аэропорта А в аэропорт Б, далее из аэропорта Б в аэропорт В и т.д.
-    private static Map<String, List<Airport>> routes = new HashMap<>();
+    private Map<String, List<Airport>> routes;
 
-    private Route() {
+    public Route(){
+        Map<String, List<Airport>> routes = new HashMap<>();
     }
 
-    public static void addRoute(String routeName, Airport... airportSequence) {
+    public void addRoute(String routeName, Airport... airportSequence) {
         routes.put(routeName, new ArrayList<>());
         for (int i = 0; i < airportSequence.length; i++) {
             routes.get(routeName).add(airportSequence[i]);
@@ -23,7 +24,7 @@ public class Route {
         }
     }
 
-    public static PartOfTheRoute getPartOfTheRoute(Route routeName, Airport fromAirport) {
+    public PartOfTheRoute getPartOfTheRoute(Route routeName, Airport fromAirport) {
 
         List<Airport> airports = routes.get(routeName);
 
@@ -42,7 +43,7 @@ public class Route {
         return part;
     }
 
-    public static double findDistance(Airport airport1, Airport airport2) {                                // "Haversine" formula for finding distance with a help of latitude and longitude
+    public double findDistance(Airport airport1, Airport airport2) {                                // "Haversine" formula for finding distance with a help of latitude and longitude
         double sin1 = Math.sin((airport1.getLatitude() - airport2.getLatitude()) / 2);
         double sin2 = Math.sin((airport1.getLongitude() - airport2.getLongitude()) / 2);
         return 2 * EARTH_RADIUS * Math.asin(Math.sqrt(sin1 * sin1 +

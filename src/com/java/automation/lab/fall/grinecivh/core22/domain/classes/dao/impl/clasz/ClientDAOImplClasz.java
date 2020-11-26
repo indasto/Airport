@@ -10,13 +10,13 @@ import java.util.List;
 public class ClientDAOImplClasz implements ClientDAO {
     @Override
     public Client create(Client o) {
-        new ObjectIO<Client>().write(o, IOConstant.RQ_PATH);
+        new ObjectIO<Client>().write(o, IOConstant.CLIENT_PATH);
         return o;
     }
 
     @Override
     public Client getById(int id) {
-        return new ObjectIO<Client>().read(IOConstant.RQ_PATH);
+        return new ObjectIO<Client>().read(IOConstant.CLIENT_PATH);
     }
 
     @Override

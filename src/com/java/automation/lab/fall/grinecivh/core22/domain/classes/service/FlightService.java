@@ -1,14 +1,15 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.service;
 
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.constant.PropertyConstant;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.FlightDAO;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.Flight;
 
 import java.util.List;
 
-public class FlightService {
+public class FlightService extends BaseService{
 
-    private FlightDAO flightDAO;
+    private FlightDAO flightDAO = FLIGHT_DAOS.get(PROPS.getValue(PropertyConstant.ENV_KEY));;
 
     public FlightService() {
     }

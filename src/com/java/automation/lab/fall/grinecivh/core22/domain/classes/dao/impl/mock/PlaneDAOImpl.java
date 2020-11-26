@@ -2,17 +2,16 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.impl.mo
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.PlaneDao;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.AbstractPassengerPlane;
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane.LongDistancePlane;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PlaneDaoImpl<T extends AbstractPassengerPlane> implements PlaneDao <T> {
+public class PlaneDAOImpl<T extends AbstractPassengerPlane> implements PlaneDao <T> {
 
     private List<T> planes;
 
-    public PlaneDaoImpl() {
+    public PlaneDAOImpl() {
         planes = new ArrayList<>();
     }
 
@@ -66,7 +65,7 @@ public class PlaneDaoImpl<T extends AbstractPassengerPlane> implements PlaneDao 
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PlaneDaoImpl<?> planeDao = (PlaneDaoImpl<?>) o;
+        PlaneDAOImpl<?> planeDao = (PlaneDAOImpl<?>) o;
 
         return planes != null ? planes.equals(planeDao.planes) : planeDao.planes == null;
     }
@@ -78,7 +77,7 @@ public class PlaneDaoImpl<T extends AbstractPassengerPlane> implements PlaneDao 
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("PlaneDaoImpl{");
+        final StringBuilder sb = new StringBuilder("PlaneDAOImpl{");
         sb.append("planes=").append(planes);
         sb.append('}');
         return sb.toString();

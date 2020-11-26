@@ -12,7 +12,7 @@ public class ClientDAOImpl implements ClientDAO {
 
     private List<Client> clients;
 
-    public ClientDAOImpl(FlightService flightService) {
+    public ClientDAOImpl() {
         clients = new LinkedList<>();
     }
 
@@ -62,7 +62,7 @@ public class ClientDAOImpl implements ClientDAO {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("ClientDAOImpl{");
+        final StringBuilder sb = new StringBuilder("ClientDAOImplClasz{");
         sb.append("clients=").append(clients);
         sb.append('}');
         return sb.toString();

@@ -59,7 +59,7 @@ public class FlightDAOImpl implements FlightDAO {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("FlightDAOImpl{");
+        final StringBuilder sb = new StringBuilder("FlightDAOImplClasz{");
         sb.append("flights=").append(flights);
         sb.append('}');
         return sb.toString();

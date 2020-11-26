@@ -1,15 +1,16 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.service;
 
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.constant.PropertyConstant;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.dao.basis.ClientDAO;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.client.Client;
 
 import java.util.List;
 import java.util.Objects;
 
-public class ClientService {
+public class ClientService extends BaseService{
 
     private static ClientService clientService;
-    private ClientDAO clientDao;
+    private ClientDAO clientDao = CLIENT_DAOS.get(PROPS.getValue(PropertyConstant.ENV_KEY));
 
     private ClientService() {
     }

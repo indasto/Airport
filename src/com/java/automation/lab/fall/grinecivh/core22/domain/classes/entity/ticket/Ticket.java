@@ -1,96 +1,92 @@
 package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.ticket;
 
-import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.FlightDeparture;
+import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.flight.Flight;
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.util.Price;
 import com.java.automation.lab.fall.grinecivh.core22.domain.enums.*;
 
-import java.util.Objects;
 
 public class Ticket {
     private AccessLevel al;
     private ClassLevel cl;
-    private String flightId;
-    private FlightDeparture flight;
+    private Flight flight;
     private double price;
 
-    private Ticket(AccessLevel accessLevel, ClassLevel classLevel, String flightId, FlightDeparture flight) {
-
+    private Ticket(AccessLevel accessLevel, ClassLevel classLevel, Flight flight) {
         this.al = accessLevel;
         this.cl = classLevel;
-        this.flightId = flightId;
         this.flight = flight;
+        price = Price.getTicketPrice(this);
     }
 
-    public static Ticket createTicket(AccessLevel accessLevel, ClassLevel classLevel, String flightId, FlightDeparture flight) {
-        return new Ticket(accessLevel, classLevel, flightId, flight);
+    public static Ticket createTicket(AccessLevel accessLevel, ClassLevel classLevel, Flight flight) {
+        return new Ticket(accessLevel, classLevel, flight);
     }
 
     public AccessLevel getAl() {
         return al;
     }
 
-    public ClassLevel getCl() {
-        return cl;
-    }
-
-    public String getFlightId() {
-        return flightId;
-    }
-
     public void setAl(AccessLevel al) {
         this.al = al;
+    }
+
+    public ClassLevel getCl() {
+        return cl;
     }
 
     public void setCl(ClassLevel cl) {
         this.cl = cl;
     }
 
-    public void setFlightId(String flightId) {
-        this.flightId = flightId;
-    }
-
-    public FlightDeparture getFlight() {
+    public Flight getFlight() {
         return flight;
     }
 
-    public void setFlight(FlightDeparture flight) {
+    public void setFlight(Flight flight) {
         this.flight = flight;
-    }
-
-    public void calculatePrice() {
-        price = Price.getTicketPrice(this);
     }
 
     public double getPrice() {
         return price;
     }
 
-    @Override
-    public String toString() {
-        return "Access level: " + al + ", Class level: " + cl + ", Flight Id='" + flightId +
-                ", Flight=" + flight;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
-    public boolean equals(Object ref) {
-        if (this == ref) {
-            return true;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        if (ref == null || getClass() != ref.getClass()) {
-            return false;
-        }
+        Ticket ticket = (Ticket) o;
 
-        Ticket ticket = (Ticket) ref;
-
-        return al == ticket.al &&
-                cl == ticket.cl &&
-                Objects.equals(flightId, ticket.flightId) &&
-                Objects.equals(flight, ticket.flight);
+        if (Double.compare(ticket.price, price) != 0) return false;
+        if (al != ticket.al) return false;
+        if (cl != ticket.cl) return false;
+        return flight != null ? flight.equals(ticket.flight) : ticket.flight == null;
     }
 
     @Override
     public int hashCode() {
-        return al.hashCode() + cl.hashCode() + flightId.hashCode();
+        int result;
+        long temp;
+        result = al != null ? al.hashCode() : 0;
+        result = 31 * result + (cl != null ? cl.hashCode() : 0);
+        result = 31 * result + (flight != null ? flight.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Ticket{");
+        sb.append("al=").append(al);
+        sb.append(", cl=").append(cl);
+        sb.append(", flight=").append(flight);
+        sb.append(", price=").append(price);
+        sb.append('}');
+        return sb.toString();
     }
 }

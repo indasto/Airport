@@ -5,11 +5,10 @@ import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.plane
 
 import java.util.List;
 
-public interface PlaneDao <T extends AbstractPlane> {
+public interface PlaneDao<T extends AbstractPassengerPlane>  extends DAO<T>{
 
     public boolean isItAvailable();
 
     public T findPlane();
 
-    public void addPlane(T plane);
 }

@@ -9,7 +9,7 @@ public abstract class Luggage {
 
     public Luggage(String thing, double kg) throws LuggageWeightException {
 
-        if (kg<0){
+        if (kg < 0) {
             throw new LuggageWeightException();
         }
 
@@ -31,14 +31,13 @@ public abstract class Luggage {
     }
 
     public void setKg(double kg) throws LuggageWeightException {
-        if (kg<0){
+        if (kg < 0) {
             throw new LuggageWeightException();
         }
 
         this.kg = kg;
 
     }
-
 
     @Override
     public String toString() {

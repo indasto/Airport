@@ -47,12 +47,12 @@ public class Price {
 
         double res = 0;
         if(classLevel == ClassLevel.ECONOM){
-            res= economTariffPerKm * ticket.getFlight().getDistance();
+            res= economTariffPerKm * ticket.getFlight().getRoutePart().getDistance();
 
         } else if (classLevel == ClassLevel.BUSINESS){
-            res= businessTariffPerKm * ticket.getFlight().getDistance();
+            res= businessTariffPerKm * ticket.getFlight().getRoutePart().getDistance();
         } else {
-            res= firstClassTarifPerKm * ticket.getFlight().getDistance();
+            res= firstClassTarifPerKm * ticket.getFlight().getRoutePart().getDistance();
         }
 
         return res;

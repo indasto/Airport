@@ -5,17 +5,6 @@ import com.java.automation.lab.fall.grinecivh.core22.domain.classes.service.Flig
 
 import java.util.List;
 
-public interface ClientDao {
+public interface ClientDAO extends DAO<Client> {
 
-    public void addClient(Client client);
-
-    public void removeClient(Client client);
-
-    public List<Client> getClients();
-
-    public void setClients(List<Client> clients);
-
-    public FlightService getFm();
-
-    public void setFm(FlightService fm);
 }

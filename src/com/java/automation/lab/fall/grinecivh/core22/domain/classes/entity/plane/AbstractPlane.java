@@ -11,17 +11,17 @@ import java.util.*;
 
 public abstract class AbstractPlane implements Fly, Refuel {
 
+    private String model;
     private double currentFuel;
     private double maxFuel;
     private double priceOfAPlane;
     private double fuelConsumptionPerKm;
-    private int yearOfCommissioning;
-    private String name;
-    private List<Pilot> pilots;
+    private int yearOfCommission;
+    private Pilot pilot;
     private boolean inFlight = false;
 
-    public AbstractPlane(double currentFuel, double maxFuel, double priceOfAPlane, int yearOfCommissioning,
-                         double fuelConsumptionPerKm, String name) throws MaxFuelException {
+    public AbstractPlane(String model, double currentFuel, double maxFuel, double priceOfAPlane, int yearOfCommission,
+                         double fuelConsumptionPerKm, Pilot pilot)  {
 
         int currentYear = getCurrentYear();
 
@@ -30,32 +30,12 @@ public abstract class AbstractPlane implements Fly, Refuel {
         } else {
             this.maxFuel = maxFuel;
         }
-
+        this.model = model;
         this.currentFuel = currentFuel;
         this.priceOfAPlane = priceOfAPlane;
-        this.yearOfCommissioning = yearOfCommissioning;
+        this.yearOfCommission = yearOfCommission;
         this.fuelConsumptionPerKm = fuelConsumptionPerKm;
-        this.name = name;
-        pilots = new ArrayList<>();
-    }
-
-    public void addPilot(Pilot pilot){
-        pilots.add(pilot);
-    }
-
-    public void removePilot(int index){
-        if (index<pilots.size()){
-            pilots.remove(index);
-        } else {
-            System.out.println("There is no such pilot");
-        }
-    }
-
-    public void printPilots(){
-        for (int i = 0; i < pilots.size(); i++) {
-            System.out.println("Index: "+ i);
-            pilots.get(i).toString();
-        }
+        this.pilot = pilot;
     }
 
     private int getCurrentYear() {
@@ -64,10 +44,7 @@ public abstract class AbstractPlane implements Fly, Refuel {
         return calendar.get(java.util.Calendar.YEAR);
     }
 
-    public void fuelUp(double amountOfLiters) throws RuntimeException {
-        if (amountOfLiters <= 0) {
-            throw new RuntimeException();
-        }
+    public void fuelUp(double amountOfLiters) {
 
         if ((amountOfLiters + currentFuel) <= maxFuel) {
             currentFuel = maxFuel;
@@ -94,101 +71,119 @@ public abstract class AbstractPlane implements Fly, Refuel {
 
     }
 
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public double getCurrentFuel() {
         return currentFuel;
-    }
-
-    public List<Pilot> getPilots() {
-        return pilots;
-    }
-
-    public double getFuelConsumptionPerKm() {
-        return fuelConsumptionPerKm;
-    }
-
-    public double getMaxFuel() {
-        return maxFuel;
-    }
-
-    public double getPriceOfAPlane() {
-        return priceOfAPlane;
-    }
-
-    public int getYearOfCommissioning() {
-        return yearOfCommissioning;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setCurrentFuel(double currentFuel) {
         this.currentFuel = currentFuel;
     }
 
-    public void setFuelConsumptionPerKm(double fuelConsumptionPerKm) {
-        this.fuelConsumptionPerKm = fuelConsumptionPerKm;
+    public double getMaxFuel() {
+        return maxFuel;
     }
 
     public void setMaxFuel(double maxFuel) {
         this.maxFuel = maxFuel;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPilots(ArrayList<Pilot> pilots) {
-        this.pilots = pilots;
+    public double getPriceOfAPlane() {
+        return priceOfAPlane;
     }
 
     public void setPriceOfAPlane(double priceOfAPlane) {
         this.priceOfAPlane = priceOfAPlane;
     }
 
-    public void setYearOfCommissioning(int yearOfCommissioning) {
-        this.yearOfCommissioning = yearOfCommissioning;
+    public double getFuelConsumptionPerKm() {
+        return fuelConsumptionPerKm;
     }
 
-    public void setInFlight(boolean inFlight) {
-        this.inFlight = inFlight;
+    public void setFuelConsumptionPerKm(double fuelConsumptionPerKm) {
+        this.fuelConsumptionPerKm = fuelConsumptionPerKm;
+    }
+
+    public int getYearOfCommission() {
+        return yearOfCommission;
+    }
+
+    public void setYearOfCommission(int yearOfCommission) {
+        this.yearOfCommission = yearOfCommission;
+    }
+
+    public Pilot getPilot() {
+        return pilot;
+    }
+
+    public void setPilot(Pilot pilot) {
+        this.pilot = pilot;
     }
 
     public boolean isInFlight() {
         return inFlight;
     }
 
-
-    @Override
-    public String toString() {
-        return  "Current Fuel: " + currentFuel +
-                ", MaxFuel: " + maxFuel +
-                ", Price Of a Plane: " + priceOfAPlane +
-                ", Fuel Consumption per km: " + fuelConsumptionPerKm +
-                ", Year of Commission: " + yearOfCommissioning +
-                ", Name: " + name +
-                ", Pilots: " + pilots +
-                ", Currently in flight: " + inFlight;
+    public void setInFlight(boolean inFlight) {
+        this.inFlight = inFlight;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         AbstractPlane that = (AbstractPlane) o;
-        return Double.compare(that.currentFuel, currentFuel) == 0 &&
-                Double.compare(that.maxFuel, maxFuel) == 0 &&
-                Double.compare(that.priceOfAPlane, priceOfAPlane) == 0 &&
-                Double.compare(that.fuelConsumptionPerKm, fuelConsumptionPerKm) == 0 &&
-                yearOfCommissioning == that.yearOfCommissioning &&
-                inFlight == that.inFlight &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(pilots, that.pilots);
+
+        if (Double.compare(that.currentFuel, currentFuel) != 0) return false;
+        if (Double.compare(that.maxFuel, maxFuel) != 0) return false;
+        if (Double.compare(that.priceOfAPlane, priceOfAPlane) != 0) return false;
+        if (Double.compare(that.fuelConsumptionPerKm, fuelConsumptionPerKm) != 0) return false;
+        if (yearOfCommission != that.yearOfCommission) return false;
+        if (inFlight != that.inFlight) return false;
+        if (model != null ? !model.equals(that.model) : that.model != null) return false;
+        return pilot != null ? pilot.equals(that.pilot) : that.pilot == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(currentFuel, maxFuel, priceOfAPlane, fuelConsumptionPerKm,
-                yearOfCommissioning, name, pilots, inFlight);
+        int result;
+        long temp;
+        result = model != null ? model.hashCode() : 0;
+        temp = Double.doubleToLongBits(currentFuel);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(maxFuel);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(priceOfAPlane);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(fuelConsumptionPerKm);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + yearOfCommission;
+        result = 31 * result + (pilot != null ? pilot.hashCode() : 0);
+        result = 31 * result + (inFlight ? 1 : 0);
+        return result;
+    }
+
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("AbstractPlane{");
+        sb.append("model='").append(model).append('\'');
+        sb.append(", currentFuel=").append(currentFuel);
+        sb.append(", maxFuel=").append(maxFuel);
+        sb.append(", priceOfAPlane=").append(priceOfAPlane);
+        sb.append(", fuelConsumptionPerKm=").append(fuelConsumptionPerKm);
+        sb.append(", yearOfCommission=").append(yearOfCommission);
+        sb.append(", pilot=").append(pilot);
+        sb.append(", inFlight=").append(inFlight);
+        sb.append('}');
+        return sb.toString();
     }
 }

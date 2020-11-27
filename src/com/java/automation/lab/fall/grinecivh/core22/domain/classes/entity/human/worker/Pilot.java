@@ -4,62 +4,45 @@ import java.util.Objects;
 
 public class Pilot extends AbstractWorker {
 
-    private int soot;
     private String license;
 
-    public Pilot(String firstName, String lastName, int age, int soot, double salary, String education, String license) {
-        super(firstName, lastName, age, salary,education);
+    public Pilot(String firstName, String lastName, int age, double soot, int salary, String education, String license) {
+        super(firstName, lastName, age, salary, soot, education);
 
-        this.soot = soot;
-        this.license=license;
+        this.license = license;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() +
-                "Soot: " + soot +
-                ", License: " + license;
-    }
-
-    @Override
-    public boolean equals(Object ref) {
-        if (this == ref) {
-            return true;
-        }
-
-        if (ref == null || getClass() != ref.getClass()) {
-            return false;
-        }
-
-        if (!super.equals(ref)) {
-            return false;
-        }
-
-        Pilot pilot = (Pilot) ref;
-
-        return  soot == pilot.soot &&
-                Objects.equals(license, pilot.license);
-    }
-
-    @Override
-    public int hashCode() {
-        return soot + license.hashCode()+license.hashCode();
+    public String getLicense() {
+        return license;
     }
 
     public void setLicense(String license) {
         this.license = license;
     }
 
-    public void setSoot(int soot) {
-        this.soot = soot;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Pilot pilot = (Pilot) o;
+
+        return license != null ? license.equals(pilot.license) : pilot.license == null;
     }
 
-
-    public int getSoot() {
-        return soot;
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (license != null ? license.hashCode() : 0);
+        return result;
     }
 
-    public String getLicense() {
-        return license;
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Pilot{");
+        sb.append("license='").append(license).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

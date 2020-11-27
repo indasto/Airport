@@ -2,64 +2,64 @@ package com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.huma
 
 import com.java.automation.lab.fall.grinecivh.core22.domain.classes.entity.human.AbstractHuman;
 
-import java.util.Objects;
-
 public class AbstractWorker extends AbstractHuman {
 
-    private double salary;
+    private int salary;
+    private double soot;
     private String education;
 
-    public AbstractWorker(String firstName, String lastName, int age, double salary, String education) throws RuntimeException {
+    public AbstractWorker(String firstName, String lastName, int age, int salary, double soot, String education) {
         super(firstName, lastName, age);
 
-        this.salary = salary;
         this.education = education;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() +
-                "Salary: " + salary +
-                ", Education: " + education;
-    }
-
-    @Override
-    public boolean equals(Object ref) {
-        if (this == ref) {
-            return true;
-        }
-
-        if (ref == null || getClass() != ref.getClass()) {
-            return false;
-        }
-
-        if (!super.equals(ref)) return false;
-
-        AbstractWorker that = (AbstractWorker) ref;
-
-        return  Double.compare(that.salary, salary) == 0 &&
-                Objects.equals(education, that.education);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = (int) salary;
-        return education.hashCode() + hash;
+        this.salary = salary;
+        this.soot = soot;
     }
 
     public double getSalary() {
         return salary;
     }
 
-    public String getEducation() {
-        return education;
-    }
-
-    public void setSalary(double salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
-    public void setEducation(String education) {
-        this.education = education;
+    public double getSoot() {
+        return soot;
+    }
+
+    public void setSoot(double soot) {
+        this.soot = soot;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        AbstractWorker that = (AbstractWorker) o;
+
+        if (salary != that.salary) return false;
+        return Double.compare(that.soot, soot) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        long temp;
+        result = 31 * result + salary;
+        temp = Double.doubleToLongBits(soot);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("AbstractWorker{");
+        sb.append("salary=").append(salary);
+        sb.append(", soot=").append(soot);
+        sb.append('}');
+        return sb.toString();
     }
 }
